@@ -1,0 +1,10 @@
+$navBgColor: rgba(0, 0, 0, 0);
+$navBgScrollColor: rgba(0, 0, 0, 0.9);
+// $color: rgb(255, 180, 40, 1);
+$color: orange;
+$color2: red;
+
+::selection {
+  color: $color;
+  background-color: rgba($color: $color, $alpha: 0.1);
+}

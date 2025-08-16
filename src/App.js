@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GeneralLayout from "./components/general/GeneralLayout";
+import AdminLayout from "./components/admin/AdminLayout";
+import UserLayout from "./components/user/UserLayout";
+import RestaurantLayout from "./components/restaurants/RestaurantLayout";
+import NoPage from "./components/error/NoPage";
+import AdminHome from "./components/admin/AdminHome";
+import AdminLogin from "./components/admin/AdminLogin";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        {/* Routing for General Panel */}
+        <Route path="/" element={<GeneralLayout />}>
+        </Route>
+
+        {/* Routing for Admin Panel */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminHome />} />
+          <Route path="login" element={<AdminLogin />} />
+        </Route>
+
+        {/* Routing for User Panel */}
+        <Route path="/user" element={<UserLayout />}>
+        </Route>
+        
+
+        {/* Routing for Restaurant Panel */}
+        <Route path="/restaurant" element={<RestaurantLayout />}>
+        </Route>
+
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
