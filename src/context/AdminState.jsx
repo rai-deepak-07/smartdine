@@ -3,10 +3,14 @@ import {AdminContext} from './Context';
 
 const AdminState = (props) => {
 
-  const [adminData, setAdminData] = useState(null)
+   const access_token = localStorage.getItem("admin_access_token");
+    const status = access_token? true : false;
+    const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(status);
+
+  const [adminData, setAdminData] = useState("");
 
   return (
-    <AdminContext.Provider value={{ adminData, setAdminData }}>
+    <AdminContext.Provider value={{ isAdminLoggedIn, setIsAdminLoggedIn, adminData, setAdminData }}>
       {props.children}
     </AdminContext.Provider>
   )
