@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import {UserContext} from './Context'; 
+import { useState } from 'react'
+import { UserContext } from './Context';
 
 const UserState = (props) => {
 
-    const [userData, setUserData] = useState(null)
-
+  const access_token = localStorage.getItem("user_access_token");
+  const status = access_token ? true : false;
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(status);
+  const [userData, setUserData] = useState("");
+  
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
-        {props.children}
+    <UserContext.Provider value={{ isUserLoggedIn, setIsUserLoggedIn, userData, setUserData }}>
+      {props.children}
     </UserContext.Provider>
   )
 }
