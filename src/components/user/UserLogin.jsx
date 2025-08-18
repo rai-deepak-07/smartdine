@@ -63,7 +63,8 @@ const UserLogin = () => {
   }, [isUserLoggedIn, navigate]);
 
   return (
-    <div>
+    <>
+      <div>
       <h2>User Login</h2>
       <form onSubmit={handleLogin}>
         <label>User Login ID:</label>
@@ -89,6 +90,7 @@ const UserLogin = () => {
         <button type="submit">Login</button>
       </form>
     </div>
+    </>
   );
 };
 
