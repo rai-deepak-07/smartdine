@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+
+const REST_API_URL = `${process.env.REACT_APP_BASE_API}restaurant/`;
 // const REST_API_BASE_URL = 'http://127.0.0.1:8000/api/smartdine/restaurant/';
-const REST_API_BASE_URL = 'http://10.166.156.122:8000/api/smartdine/restaurant/';
+// const REST_API_URL = 'http://10.166.156.122:8000/api/smartdine/restaurant/';
 
 const getRestaurantToken = () => {
   return localStorage.getItem('restaurant_access_token');
@@ -12,7 +14,7 @@ const setRestaurantToken = (token) => {
 };
 
 const apiRestaurantService = axios.create({
-  baseURL: REST_API_BASE_URL,
+  baseURL: REST_API_URL,
   timeout: 5000,
 });
 
