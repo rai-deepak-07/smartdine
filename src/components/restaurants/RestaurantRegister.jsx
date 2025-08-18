@@ -1,7 +1,9 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import apiRestaurantService from '../../apiservice/apiRestaurantService';
 
 const RestaurantRegister = () => {
+
   const [formFields, setFormFields] = useState({
     res_name: '',
     res_address: '',
@@ -17,6 +19,8 @@ const RestaurantRegister = () => {
 
   const [fssaiPdf, setFssaiPdf] = useState(null);
   const [gstPdf, setGstPdf] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormFields(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -42,12 +46,19 @@ const RestaurantRegister = () => {
     if (gstPdf) data.append('gst_registration_url', gstPdf);
 
     try {
-      await axios.post(
-        'http://127.0.0.1:8000/api/smartdine/restaurant/registration/',
-        data,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+        const response = await apiRestaurantService.post('registration/', 
+          data,
+          { headers: { 'Content-Type': 'multipart/form-data' } }
+        );
+      // await axios.post(
+      //   `${process.env.REACT_APP_BASE_API}restaurant/registration/`,
+      //   data,
+      //   { headers: { 'Content-Type': 'multipart/form-data' } }
+      // );
+      console.log(response.data);
+      
       alert('Registration submitted successfully!');
+      navigate('/restaurant-login');
     } catch (err) {
       console.error(err.response);
       alert('Error submitting registration!');

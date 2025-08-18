@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // const USER_API_BASE_URL = 'http://127.0.0.1:8000/api/smartdine/user/';
-const USER_API_BASE_URL = 'http://10.166.156.122:8000/api/smartdine/user/';
+// const USER_API_BASE_URL = 'http://10.166.156.122:8000/api/smartdine/user/';
+const USER_API_URL = `${process.env.REACT_APP_BASE_API}user/`;
 
 const getUserToken = () => {
   return localStorage.getItem('user_access_token');
@@ -12,7 +13,7 @@ const setUserToken = (token) => {
 };
 
 const apiUserService = axios.create({
-  baseURL: USER_API_BASE_URL,
+  baseURL: USER_API_URL,
   timeout: 5000,
 });
 
