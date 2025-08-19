@@ -1,7 +1,19 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import { AdminContext } from '../../context/Context'
+import { useContext, useEffect } from 'react';
 
 const AdminLayout = () => {
+  const { isAdminLoggedIn, setIsAdminLoggedIn, adminData, setAdminData } = useContext(AdminContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdminLoggedIn) {
+      navigate('/admin-login', { state: { from: location } });
+    }
+  }, [isAdminLoggedIn, location, navigate]);
   return (
+    isAdminLoggedIn && (  
     <div>
       <h2>Admin Layout</h2>
       {/* Header Start */}
@@ -23,6 +35,7 @@ const AdminLayout = () => {
     
     </div>
   )
+);
 }
 
 export default AdminLayout
