@@ -7,9 +7,6 @@ const GeneralLayout = () => {
   return (
     <>
       <Header />
-      <div>
-        <h2>General Layout</h2>
-      </div>
       <Outlet />
       <Footer />
     </>

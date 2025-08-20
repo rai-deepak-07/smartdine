@@ -63,7 +63,7 @@ const RestaurantLogin = () => {
   }, [isRestaurantLoggedIn, navigate]);
 
   return (
-    <div>
+    <div className=' min-vh-100 d-flex align-items-center'>
       {/* <h2>Restaurant Login</h2>
       <form onSubmit={handleLogin}>
         <label>Restaurant Login ID:</label>
@@ -90,28 +90,22 @@ const RestaurantLogin = () => {
       </form> */}
        <div className="container">
         <div className="row justify-content-center">
-            <div className="col-md-10 col-lg-8">
-                <div className="card shadow">
+            <div className="col-md-8 col-lg-10">
+                <div className="card shadow p-4 rounded-5">
                     <div className="row g-0">
-                        
-                        <div className="col-md-5 d-none d-md-block">
-                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                                 alt="Restaurant Interior" className="img-fluid rounded-start h-100 object-fit-cover"/>
-                        </div>
-                        
-                        
-                        <div className="col-md-7">
+                      <div className="col-md-1"></div>
+                        <div className="col-md-5">
                             <div className="card-body p-4">
-                                <h2 className="card-title text-center mb-4 text-danger">Restaurant Login</h2>
+                                <h2 className="card-title text-center mb-4 cl4">Restaurant Login</h2>
                                 <p className="text-center text-muted mb-4">Welcome back! Please login to your account</p>
                                 
-                                <form>
+                                <form onSubmit={handleLogin}>
                                     
                                     <div className="mb-3">
                                         <label className="form-label">Restaurant Login ID</label>
                                         <div className="input-group">
-                                            <span className="input-group-text"><i className="fas fa-user"></i></span>
-                                            <input type="text" className="form-control" name="res_login_id" required/>
+                                            {/* <span className="input-group-text"><i className="fas fa-user"></i></span> */}
+                                            <input type="text" className="form-control form-control-lg" name="res_login_id"maxLength={100} value={formFields.res_login_id} onChange={handleChange} placeholder='Login ID' required />
                                         </div>
                                     </div>
                                     
@@ -119,8 +113,8 @@ const RestaurantLogin = () => {
                                     <div className="mb-4">
                                         <label className="form-label">Password</label>
                                         <div className="input-group">
-                                            <span className="input-group-text"><i className="fas fa-lock"></i></span>
-                                            <input type="password" className="form-control" name="res_login_password" required/>
+                                            {/* <span className="input-group-text"><i className="fas fa-lock"></i></span> */}
+                                            <input type="password" className="form-control form-control-lg" name="res_login_password"  minLength={8} maxLength={128} value={formFields.res_login_password} onChange={handleChange} placeholder='Password' required />
                                         </div>
                                     </div>
                                     
@@ -134,19 +128,20 @@ const RestaurantLogin = () => {
                                         <span className="px-2 small text-muted">or continue with</span>
                                         <hr className="flex-grow-1"/>
                                     </div>
-                                    
-                                    <div className="row g-2 mb-4">
-                                        <div className="col">
-                                            <button type="button" className="btn btn-outline-secondary w-100">
+                                    <div className="d-grid mb-3">
+                                       
+                                        <button type="button" className="btn btn-outline-secondary w-100">
                                                 <i className="fab fa-google me-2"></i> Google
                                             </button>
-                                        </div>
-                                        <div className="col">
+                                    </div>
+                                    <div className="d-grid mb-3">
                                             <button type="button" className="btn btn-outline-primary w-100">
                                                 <i className="fab fa-facebook-f me-2"></i> Facebook
                                             </button>
-                                        </div>
+
                                     </div>
+                                    
+                                    
                                     
                                     
                                     <div className="text-center">
@@ -154,6 +149,11 @@ const RestaurantLogin = () => {
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-5 d-none d-md-block ">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Restaurant Interior" className="img-fluid rounded-start h-100 object-fit-cover"/>
                         </div>
                     </div>
                 </div>
