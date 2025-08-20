@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GeneralLayout from "./components/general/GeneralLayout";
+import GeneralLayout from "./components/general/layout/GeneralLayout";
 import AdminLayout from "./components/admin/AdminLayout";
-import UserLayout from "./components/user/UserLayout";
-import RestaurantLayout from "./components/restaurants/RestaurantLayout";
+import UserLayout from "./components/user/layout/UserLayout";
+import RestaurantLayout from "./components/restaurants/layout/RestaurantLayout";
 import NoPage from "./components/error/NoPage";
 
 import AdminHome from "./components/admin/AdminHome";
@@ -13,7 +13,7 @@ import RestaurantLogin from "./components/restaurants/RestaurantLogin";
 
 import UserLogin from "./components/user/UserLogin";
 import UserRegister from "./components/user/UserRegister";
-import Dashboard from "./components/restaurants/Dashboard";
+import Dashboard from "./components/restaurants/layout/Dashboard";
 
 const App = () => {
   return (
