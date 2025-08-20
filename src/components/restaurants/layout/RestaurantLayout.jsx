@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
-import { ResturantContext } from '../../context/Context'
+import { ResturantContext } from '../../../context/Context'
 import { useContext, useEffect } from 'react';
 
 const RestaurantLayout = () => {

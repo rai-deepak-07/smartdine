@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/Context'
-import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../context/Context'
+import { useContext, useEffect } from 'react';
 import axios from 'axios';
 
 const UserLayout = () => {
