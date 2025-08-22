@@ -48,7 +48,6 @@ apiRestaurantService.interceptors.response.use((response) => {
         return apiRestaurantService(originalRequest);
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
-        // Handle logout or any other error handling here.
       }
     }
 

@@ -4,8 +4,8 @@ import { UserContext } from './Context';
 const UserState = (props) => {
 
   const access_token = localStorage.getItem("user_access_token");
-  // const status = access_token ? true : false;
-  const status = true;
+  const status = access_token ? true : false;
+  // const status = true;
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(status);
   const [userData, setUserData] = useState("");
   
