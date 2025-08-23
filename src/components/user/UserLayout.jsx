@@ -9,8 +9,11 @@ const UserLayout = () => {
   function success(position){
     const location_url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyCb1KdgCcM82qyDXQPND2Mj9FhQVXRoI7Q`
     axios.get(location_url).then(response => {
-      setUserData(
-      response.data.results[0].address_components[3].long_name);
+      const components = response.data.results[0].address_components;
+      const city = components.find(c => c.types.includes("administrative_area_level_2"));
+      if(city){
+      setUserData(city.long_name);
+      }
     })
     .catch(error => {
       console.error("error :",error);
