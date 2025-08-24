@@ -8,11 +8,13 @@ import './index.css';
 import './css/myStyle.scss';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 
 // Library import
 import '../node_modules/aos/dist/aos.css';
 import '../node_modules/aos/dist/aos.js';
 import '../node_modules/react-loading-skeleton/dist/skeleton.css';
+
 
 import MyStates from './context/MyStates.jsx';
 

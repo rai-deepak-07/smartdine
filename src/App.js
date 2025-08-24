@@ -37,7 +37,7 @@ const App = () => {
 
       <LoadingBar color='#E2293F' height="3px" loaderSpeed="1000" shadow={true} progress={progress} />
       <Toaster position="top-center" reverseOrder={false} />
-
+      
       <MainState>
         <RestaurantState>
           <UserState>
