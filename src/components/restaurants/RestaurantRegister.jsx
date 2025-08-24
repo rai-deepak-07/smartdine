@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiRestaurantService from '../../apiservice/apiRestaurantService';
+import ApiService  from '../../apiservice/ApiService';
 
 const RestaurantRegister = () => {
 
@@ -19,11 +19,11 @@ const RestaurantRegister = () => {
 
   const [fssaiPdf, setFssaiPdf] = useState(null);
   const [gstPdf, setGstPdf] = useState(null);
+
   const navigate = useNavigate();
 
-
   const handleChange = (e) => {
-    setFormFields(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormFields((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleFssaiPdfChange = (e) => {
@@ -46,22 +46,20 @@ const RestaurantRegister = () => {
     if (gstPdf) data.append('gst_registration_url', gstPdf);
 
     try {
-        const response = await apiRestaurantService.post('registration/', 
-          data,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
-        );
-      // await axios.post(
-      //   `${process.env.REACT_APP_BASE_API}restaurant/registration/`,
-      //   data,
-      //   { headers: { 'Content-Type': 'multipart/form-data' } }
-      // );
-      console.log(response.data);
-      
+      await ApiService.post('restaurant/registration/', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        timeout: 0,
+      });
+
       alert('Registration submitted successfully!');
       navigate('/restaurant-login');
     } catch (err) {
-      console.error(err.response);
-      alert('Error submitting registration!');
+      if (err.code === 'ECONNABORTED') {
+        console.log('Request timed out');
+      } else {
+        console.log(err);
+        alert('Error submitting registration!');
+      }
     }
   };
 

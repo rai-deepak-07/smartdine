@@ -1,53 +1,74 @@
 import axios from 'axios';
 
-// const USER_API_BASE_URL = 'http://127.0.0.1:8000/api/smartdine/user/';
-// const USER_API_BASE_URL = 'http://10.166.156.122:8000/api/smartdine/user/';
+// Base URL for user APIs, from env variable
 const USER_API_URL = `${process.env.REACT_APP_BASE_API}user/`;
 
-const getUserToken = () => {
-  return localStorage.getItem('user_access_token');
+// Token helpers for user
+const getUserToken = () => localStorage.getItem('user_access_token');
+const setUserToken = (token) => localStorage.setItem('user_access_token', token);
+const getUserRefreshToken = () => localStorage.getItem('user_refresh_token');
+const removeUserTokens = () => {
+  localStorage.removeItem('user_access_token');
+  localStorage.removeItem('user_refresh_token');
+  // remove any additional user-related tokens/data here
 };
 
-const setUserToken = (token) => {
-  return localStorage.setItem('user_access_token',token);
-};
+// Axios instance for refresh token calls without interceptors to avoid recursion
+const refreshInstance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_API,
+  timeout: 5000,
+});
 
+// Main Axios instance for user API calls
 const apiUserService = axios.create({
   baseURL: USER_API_URL,
   timeout: 5000,
 });
 
-apiUserService.interceptors.request.use((config) => {
+// Attach access token to every request
+apiUserService.interceptors.request.use(
+  (config) => {
     const token = getUserToken();
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-apiUserService.interceptors.response.use((response) => {
-    return response;
-  },
+// Handle 401 errors by refreshing token and retrying original request
+apiUserService.interceptors.response.use(
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    const refreshToken = localStorage.getItem('user_refresh_token');
 
-    if (error.response.status === 401 && !originalRequest._retry && refreshToken) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+      const refreshToken = getUserRefreshToken();
+
+      if (!refreshToken) {
+        removeUserTokens();
+        window.location.href = '/user-login'; // redirect user to login (adjust path)
+        return Promise.reject(error);
+      }
+
       try {
-        const refreshResponse = await apiUserService.post('/api/token/refresh/', { refresh: refreshToken });
+        // Use the exact refresh token endpoint full URL or from env
+         const refreshResponse = await refreshInstance.post('token/refresh/', {
+          refresh: refreshToken,
+        });
+
         const { access } = refreshResponse.data;
-        console.log("Refresh Access Token:", refreshResponse);
         setUserToken(access);
+
+        // Retry original request with new token
         originalRequest.headers['Authorization'] = `Bearer ${access}`;
         return apiUserService(originalRequest);
       } catch (refreshError) {
-        console.error('Token refresh failed:', refreshError);
-        // Handle logout or any other error handling here.
+        removeUserTokens();
+        window.location.href = '/user-login'; // redirect user on failure
+        return Promise.reject(refreshError);
       }
     }
 

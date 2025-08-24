@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-// API url Using environment variables for configuration
-const API_BASE_URL = process.env.REACT_APP_RAI_API;
+// Use correct env variable names
+const API_BASE_URL = process.env.REACT_APP_BASE_API;
 
 const ApiService = axios.create({
   baseURL: API_BASE_URL,
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Token ${process.env.REACT_APP_RAI_API_TOKEN}`,
+    // Add x-api-key header for authorization
+    'x-api-key': process.env.REACT_APP_API_KEY,
   },
 });
 
