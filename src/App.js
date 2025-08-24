@@ -64,7 +64,7 @@ const App = () => {
               <Route path="user-login" element={<UserLogin />} />
               <Route path="user-register" element={<UserRegister />} />
               <Route element={<UserProtected />}>
-                <Route path="/user" element={<UserLayout />} >
+                <Route path="user" element={<UserLayout />} >
                 </Route>
               </Route>
 

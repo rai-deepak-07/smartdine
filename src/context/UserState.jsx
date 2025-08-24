@@ -5,6 +5,8 @@ import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 const UserState = (props) => {
+
+  const [userData, setuserData] = useState([]);
  const isTokenExpired = (token) => {
     try {
       const { exp } = jwtDecode(token);
@@ -41,7 +43,7 @@ const UserState = (props) => {
 
   
   return (
-    <UserContext.Provider value={{ isLoggedIn, login, logout }}>
+    <UserContext.Provider value={{ isLoggedIn, login, logout , userData, setuserData }}>
       {props.children}
     </UserContext.Provider>
   )
