@@ -1,44 +1,58 @@
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
-import { ResturantContext } from '../../../context/Context'
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ResturantContext } from '../../../context/Context';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const RestaurantLayout = () => {
-  const { isRestaurantLoggedIn, setIsRestaurantLoggedIn, resturantData, setResturantData } = useContext(ResturantContext);
+  const { isLoggedIn, logout } = useContext(ResturantContext);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Function for handling restaurant logout
-  const handelLogOut = () => {
-        localStorage.removeItem("restaurant_access_token")
-        localStorage.removeItem("restaurant_refresh_token")
-        localStorage.removeItem("restaurant_res_reg_id")
-        let logOut = setInterval(() => {
-            setIsRestaurantLoggedIn(false)
-            navigate('/restaurant-login')
-            return clearInterval(logOut)
+  // Handle logout with toast promise
+  const handleLogOutAsync = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        // Call context logout to clear tokens and update state
+        setTimeout(() => {
+          logout();
+          resolve(); // Simulate successful logout
         }, 1500);
-  }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
 
   useEffect(() => {
-    if (!isRestaurantLoggedIn) {
-      alert(isRestaurantLoggedIn);
-      navigate('/restaurant-login' , { state: { from: location } });
+    if (!isLoggedIn) {
+      // Redirect to login if not logged in
+      navigate('/restaurant-login', { state: { from: location }, replace: true });
     }
-    return () => {   
-    };
-  }, []);
+  }, [isLoggedIn, navigate, location]);
+
+  if (!isLoggedIn) {
+    // Optionally render null or loading state while redirecting
+    return null;
+  }
 
   return (
-    isRestaurantLoggedIn && (
-      <div>
-        <h2>Restaurant Layout</h2>
-        <Outlet />
+    <div>
+      <h2>Restaurant Layout</h2>
+      <Outlet />
+      <button
+        onClick={() =>
+          toast.promise(handleLogOutAsync(), {
+            loading: 'Logging out...',
+            success: <b>Logged out successfully!</b>,
+            error: <b>Logout failed.</b>,
+          })
+        }
+      >
+        Logout
+      </button>
+    </div>
+  );
+};
 
-        <button onClick={handelLogOut}>Logout</button>
-      </div>
-    )
-  )
-}
-
-export default RestaurantLayout
+export default RestaurantLayout;

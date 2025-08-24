@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import {MainContext} from './Context';
+import  { useState } from 'react'
+import { MainContext } from './Context';
 
 const MainState = (props) => {
 
-  const [mainData, setMainData] = useState(null)
+  const [mainData, setMainData] = useState('Deepak')
 
   return (
     <MainContext.Provider value={{ mainData, setMainData }}>
