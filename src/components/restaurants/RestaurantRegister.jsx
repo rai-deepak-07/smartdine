@@ -111,7 +111,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   if (!validateBeforeSubmit()) {
-    toast.error('Please fix the validation errors before submitting.');
+    // toast.error('Please fix the validation errors before submitting.');
     return;
   }
 
@@ -133,14 +133,12 @@ const handleSubmit = (e) => {
       loading: 'Submitting your registration...',
       success: () => {
         navigate('/restaurant-login');
-        return 'Registration submitted successfully!';
+        return 'Registration successfully!';
       },
       error: (err) => err.message || 'Registration failed!',
     }
   );
 };
-
-
 
   return (
 
