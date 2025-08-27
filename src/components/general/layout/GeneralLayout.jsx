@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import Maintanence from '../../error/Maintanence'
 import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
@@ -22,7 +23,9 @@ const GeneralLayout = () => {
     <>
       {/* Header Section */}
 
+
       <Header />
+      <Maintanence/>
 
       {/* Main Content Section */}
       <Outlet />
