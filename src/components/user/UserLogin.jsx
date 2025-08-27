@@ -35,7 +35,7 @@ const UserLogin = () => {
         })
         .catch((error) => {
           if (error.response) {
-            if (error.response.status === 401) throw new Error('Invalid Username or Password');
+            if (error.response.status === 401) throw new Error(error.response.data.detail);
             else if (error.response.status === 404) throw new Error('Invalid API URL');
             else throw new Error('Login Failed! Server Error');
           } else {
