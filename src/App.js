@@ -17,6 +17,7 @@ import UserRegister from "./components/user/UserRegister";
 import RestaurantLogin from "./components/restaurants/RestaurantLogin";
 import RestaurantRegister from "./components/restaurants/RestaurantRegister";
 import Dashboard from "./components/restaurants/layout/Dashboard";
+import UserDashboard from "./components/user/layout/UserDashboard";
 import LoadingBar from 'react-top-loading-bar'
 import { Toaster } from "react-hot-toast";
 
@@ -65,6 +66,7 @@ const App = () => {
               <Route path="user-register" element={<UserRegister />} />
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />} >
+                  <Route index element={<UserDashboard />} />
                 </Route>
               </Route>
 
