@@ -27,6 +27,7 @@ import { useEffect } from "react";
 import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
+import OtpVerification from "./components/master/OtpVerification";
 
 const App = () => {
 
@@ -65,6 +66,7 @@ const App = () => {
               <Route path="user-register" element={<UserRegister />} />
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />} >
+                <Route path="otp-verification" element={<OtpVerification/>} />
                 </Route>
               </Route>
 

@@ -83,152 +83,127 @@ const UserLogin = () => {
         <button type="submit">Login</button>
       </form> */}
   
+
 <div
-  className="d-flex align-items-center justify-content-center vh-100"
-  style={{ backgroundColor: "#f8f9fa" }} // optional page background
+  className="d-flex align-items-center justify-content-center"
+  style={{
+    minHeight: "100vh",
+    backgroundColor: "#f8f9fa", // plain background
+    padding: "20px",
+  }}
 >
+  {/* Login Card */}
   <div
-    className="card rounded-4 shadow-lg overflow-hidden position-relative w-100"
-    style={{ maxWidth: "850px", maxHeight: "95vh" }}
+    className="card-body p-5 text-center text-white"
+    style={{
+      width: "100%",
+      maxWidth: "600px" ,
+      minHeight: "650px",
+      borderRadius: "15px",
+      position: "relative",
+    }}
   >
-    {/* Full blurred background inside card */}
-    <div className="position-absolute top-0 start-0 w-100 h-100">
-      <img
-        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D"
-        className="w-100 h-100 object-fit-cover"
-        style={{ filter: "blur(10px)", transform: "scale(1.1)" }}
-        alt="Background"
+    {/* Background Image inside the card */}
+    <div
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+       filter: "brightness(0.9)", // no blur
+       borderRadius: "20px",
+       border: "2px solid rgba(255,255,255,0.6)",
+
+        zIndex: 0,
+      }}
+    ></div>
+
+    {/* Glass Layer with Centered Form */}
+<div
+  className="d-flex flex-column justify-content-center align-items-center text-center text-white"
+  style={{
+    backgroundColor: "rgba(255, 255, 255, 0.25)",
+    backdropFilter: "blur(10px)",
+    borderRadius: "20px",
+    zIndex: 1,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "80%",        // Responsive width
+    maxWidth: "450px",   // Limit max size
+    padding: "40px 30px",
+  }}
+>
+  <h3 className="mb-4 fw-bold">User Login</h3>
+
+  <form
+    onSubmit={handleLogin}
+    style={{ width: "100%" }}
+  >
+    <div className="mb-3 input-group">
+      <span className="input-group-text bg-light">
+        <i className="bi bi-envelope"></i>
+      </span>
+      <input
+        type="email"
+        name="user_email"
+        value={formFields.user_email}
+        onChange={handleChange}
+        className="form-control form-control-lg"
+        placeholder="Email Address"
+        style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
+        required
       />
-      {/* Glass effect overlay */}
-      <div
-        className="position-absolute top-0 start-0 w-100 h-100"
-        style={{ background: "rgba(255, 255, 255, 0.2)", backdropFilter: "blur(10px)" }}
-      ></div>
     </div>
-
-    {/* Card Content */}
-    <div className="row g-0 position-relative h-100" style={{ zIndex: 2 }}>
-      {/* Left Image */}
-      <div className="col-md-5 d-none d-md-block position-relative p-3">
-        <img
-          src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D"
-          className="img-fluid rounded-3 w-100 h-100 object-fit-cover shadow-lg"
-          alt="Restaurant"
-        />
-      </div>
-
-      {/* Right Form Section */}
-      <div className="col-md-7 d-flex flex-column justify-content-center p-4">
-        <h2 className="text-center mb-2 text-dark fw-bold">Create Account</h2>
-        <p className="text-center mb-3 text-dark">
-          Sign up with your email and password
-        </p>
-
-        <form onSubmit={handleLogin}>
-           <label><h5>Username:</h5></label>
-          <div className="mb-2">
-            <input
-              type="text"
-              className="form-control bg-light bg-opacity-50 text-dark"
-              required
-            />
-          </div>
-          <label><h5>Email:</h5></label>
-          <div className="mb-2">
-            {/* <input
-              type="email"
-              className="form-control bg-light bg-opacity-50 text-dark"
-              placeholder="Email"
-              required
-            /> */}
-             <input
-             className="form-control bg-light bg-opacity-50 text-dark"
-          type="email"
-          name="user_email"
-          maxLength={100}
-          value={formFields.user_email}
-          onChange={handleChange}
-          required
-        />
-          </div>
-           <label><h5>Password:</h5></label>
-           <div className="mb-2">
-            {/* <input
-              type="password"
-              className="form-control bg-light bg-opacity-50 text-dark"
-              placeholder="Password"
-              required
-            /> */}
-        <input
-         className="form-control bg-light bg-opacity-50 text-dark"
-          type="password"
-          name="user_password"
-          minLength={8}
-          maxLength={128}
-          value={formFields.user_password}
-          onChange={handleChange}
-          required
-        />
-          </div>
-           <label><h5>Confirm Password:</h5></label>
-           <div className="mb-2">
-            {/* <input
-              type="password"
-              className="form-control bg-light bg-opacity-50 text-dark"
-              placeholder="Confirm Password"
-              required
-            /> */}
-        <input
-        className="form-control bg-light bg-opacity-50 text-dark"
-          type="password"
-          name="user_password"
-          minLength={8}
-          maxLength={128}
-          value={formFields.user_password}
-          onChange={handleChange}
-          required
-        />
-          </div>
-
-          <div className="d-grid mb-2 mt-3">
-            <button type="submit" className="btn btn-dark btn-lg rounded-4">
-              Sign Up
-            </button>
-          </div>
-        </form>
-
-        <div className="text-center mb-2 text-dark">
-          <span>or sign up with</span>
-        </div>
-
-        <div className="d-grid gap-2 mb-3">
-          <button type="button" className="btn btn-outline-dark btn-lg">
-            <i className="bi bi-google me-2"></i>Google
-          </button>
-          <button type="button" className="btn btn-outline-dark btn-lg">
-            <i className="bi bi-facebook me-2"></i>Facebook
-          </button>
-        </div>
-
-        <div className="text-center text-dark">
-          <p className="mb-0">
-            Already have an account?{" "}
-            <a href="/" className="text-decoration-none">
-              Login
-            </a>
-          </p>
-        </div>
-      </div>
+    <div className="mb-3 input-group">
+      <span className="input-group-text bg-light">
+        <i className="bi bi-lock"></i>
+      </span>
+      <input
+        type="password"
+        name="user_password"
+        value={formFields.user_password}
+        onChange={handleChange}
+        className="form-control form-control-lg"
+        placeholder="Password"
+        style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
+        required
+      />
     </div>
+    <button
+      type="submit"
+      className="btn btn-danger w-100 mb-3 fw-bold"
+    >
+      LOGIN
+    </button>
+    <p>Or login with</p>
+    <div>
+      <a href="#" className="btn btn-outline-primary btn-sm me-2">
+        <i className="bi bi-facebook"></i>
+      </a>
+      <a href="#" className="btn btn-outline-danger btn-sm me-2">
+        <i className="bi bi-google"></i>
+      </a>
+      <a href="#" className="btn btn-outline-info btn-sm">
+        <i className="bi bi-twitter"></i>
+      </a>
+    </div>
+  </form>
+</div>
+
   </div>
-  </div>
-  </div>
-
-
-
-
+</div>
+</div>
 
   );
 };
 
 export default UserLogin;
+
+
