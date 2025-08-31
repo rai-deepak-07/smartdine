@@ -10,7 +10,7 @@ const getRefreshToken = () => localStorage.getItem('restaurant_refresh_token');
 const removeTokens = () => {
   localStorage.removeItem('restaurant_access_token');
   localStorage.removeItem('restaurant_refresh_token');
-  localStorage.removeItem('restaurant_res_reg_id');
+  localStorage.removeItem('restaurant_reg_id');
 };
 
 // Axios instance just for token refresh (to avoid interceptor loops)
