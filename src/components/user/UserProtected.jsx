@@ -4,12 +4,14 @@ import { useContext } from 'react';
 import { UserContext } from '../../context/Context';
 
 const UserProtected = () => {
-    const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
 
-    if (!isLoggedIn) {
-        return <Navigate to="/user-login" replace />;
-    }
-    return <Outlet />;
-}
+  if (!isLoggedIn) {
+    return <Navigate to="/user-login" replace />;
+  }
+
+  return <Outlet />;
+};
+
 
 export default UserProtected;

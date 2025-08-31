@@ -31,9 +31,9 @@ const RestaurantLogin = () => {
     toast.promise(
       ApiService.post('restaurant/login/', { res_login_id, res_login_password })
         .then((response) => {
-          const { access, refresh, res_reg_id } = response.data;
+          const { access, refresh, user_id } = response.data;
           // Use context's login method to save tokens and update state
-          login({ accessToken: access, refreshToken: refresh, res_reg_id });
+          login({ accessToken: access, refreshToken: refresh, user_id });
         })
         .catch((error) => {
           if (error.response) {
