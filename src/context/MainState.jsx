@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react'
+import  { useState } from 'react'
 import { MainContext } from './Context';
 import ApiService from '../apiservice/ApiService';
 
@@ -16,12 +16,12 @@ const MainState = (props) => {
     }
   }
 
-  useEffect(() => {
-    getLocations();
-  }, []);
+  // useEffect(() => {
+  //   getLocations();
+  // }, []);
 
   return (
-    <MainContext.Provider value={{ mainData, setMainData, locations }}>
+    <MainContext.Provider value={{ mainData, setMainData, locations, getLocations }}>
       {props.children}
     </MainContext.Provider>
   )

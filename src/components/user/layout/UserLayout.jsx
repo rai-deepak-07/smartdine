@@ -1,7 +1,6 @@
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { UserContext } from '../../../context/Context'
-import { useContext, useEffect } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 
 const UserLayout = () => {
   const { logout } = useContext(UserContext);

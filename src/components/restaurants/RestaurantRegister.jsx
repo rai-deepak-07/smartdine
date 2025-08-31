@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ApiService from '../../apiservice/ApiService';
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
-import { MainContext } from '../../context/Context';
+import { MainContext, ResturantContext } from '../../context/Context';
 
 const RestaurantRegister = () => {
 
@@ -24,10 +24,9 @@ const RestaurantRegister = () => {
     terms_accepted: false,
   });
 
-  const { locations } = useContext(MainContext);
+  const { locations, getLocations } = useContext(MainContext);
+  const { sendWelcomeEmail } = useContext(ResturantContext);
   const [cities, setCities] = useState([]);
-
-  console.log(locations);
 
   // Files
   const [fssaiPdf, setFssaiPdf] = useState(null);
@@ -89,7 +88,6 @@ const RestaurantRegister = () => {
     else if (activeSection === 'owner') setActiveSection('restaurant');
   };
 
-
   const validateBeforeSubmit = () => {
     if (formFields.password !== formFields.confirm_password) {
       toast.error('Passwords do not match.');
@@ -106,7 +104,9 @@ const RestaurantRegister = () => {
     formFields.res_name.trim() !== '' &&
     formFields.res_address.trim() !== '' &&
     formFields.res_contact_no.trim() !== '' &&
-    formFields.google_location_url.trim() !== '';
+    formFields.google_location_url.trim() !== '' &&
+    formFields.state.trim() !== '' &&
+    formFields.city.trim() !== '';
 
   const isOwnerSectionValid = () =>
     formFields.owner_name.trim() !== '' &&
@@ -120,38 +120,58 @@ const RestaurantRegister = () => {
     !formFields.terms_accepted
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!validateBeforeSubmit()) {
-      // toast.error('Please fix the validation errors before submitting.');
-      return;
-    }
+  if (!validateBeforeSubmit()) return;
 
-    const data = new FormData();
+  const data = new FormData();
+  Object.entries(formFields).forEach(([key, value]) => {
+    data.append(key, value);
+  });
 
-    Object.entries(formFields).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+  if (fssaiPdf) data.append("fssai_license_url", fssaiPdf);
+  if (gstPdf) data.append("gst_registration_url", gstPdf);
 
-    if (fssaiPdf) data.append('fssai_license_url', fssaiPdf);
-    if (gstPdf) data.append('gst_registration_url', gstPdf);
-
-    toast.promise(
-      ApiService.post('restaurant/registration/', data, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 0,
+  toast.promise(
+    ApiService.post("restaurant/registration/", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+      timeout: 0,
+    })
+      .then((res) => {
+        // ✅ Only send email if registration succeeded
+        return sendWelcomeEmail(
+          formFields.owner_name,
+          formFields.res_name,
+          formFields.email
+        )
+          .then(() => {
+            navigate("/restaurant-login");
+            return "Registration successful! 🎉"; // success message
+          })
+          .catch((err) => {
+            console.error("📧 Email sending failed:", err);
+            // still navigate, but show partial success
+            navigate("/restaurant-login");
+            return "Registration successful, but email not sent.";
+          });
+      })
+      .catch((err) => {
+        console.error("❌ Registration failed:", err);
+        throw err;
       }),
-      {
-        loading: 'Submitting your registration...',
-        success: () => {
-          navigate('/restaurant-login');
-          return 'Registration successfully!';
-        },
-        error: (err) => err.message || 'Registration failed!',
-      }
-    );
-  };
+    {
+      loading: "Submitting your registration...",
+      success: (msg) => msg,
+      error: (err) => err.message || "Registration failed!",
+    }
+  );
+};
+
+
+  useEffect(() => {
+    getLocations();
+  }, []);
 
   return (
 
@@ -236,7 +256,7 @@ const RestaurantRegister = () => {
 
                       <div className="mt-4 p-3 bg-white rounded-3 shadow-sm">
                         <h6 className="border-bottom pb-2 text-primary">Registration Progress</h6>
-                        <div className="progress mb-2" style={{ height: "10px;" }}>
+                        <div className="progress mb-2" style={{ height: "10px" }}>
                           <div className="progress-bar progress-bar-striped progress-bar-animated"
                             role="progressbar"
                             style={{
@@ -244,7 +264,7 @@ const RestaurantRegister = () => {
                               ariaValuenow: `${getProgress()}`, ariaValuemin: "0", ariaValuemax: "100"
                             }}></div>
                         </div>
-                        <p className="mb-0 small text-muted">{getProgressText}</p>
+                        <p className="mb-0 small text-muted">{getProgressText()}</p>
                       </div>
 
                       <div className="mt-4 text-center">

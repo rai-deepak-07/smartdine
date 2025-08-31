@@ -1,5 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import ApiService from '../../apiservice/ApiService';

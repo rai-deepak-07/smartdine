@@ -3,15 +3,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RestaurantState from "./context/RestaurantState";
 import UserState from "./context/UserState";
 import MainState from "./context/MainState";
-import AdminState from "./context/AdminState";
+// import AdminState from "./context/AdminState";
 
 import GeneralLayout from "./components/general/layout/GeneralLayout";
-import AdminLayout from "./components/admin/AdminLayout";
+// import AdminLayout from "./components/admin/AdminLayout";
 import UserLayout from "./components/user/layout/UserLayout";
 import RestaurantLayout from "./components/restaurants/layout/RestaurantLayout";
 import NoPage from "./components/error/NoPage";
 
-import AdminLogin from "./components/admin/AdminLogin";
+// import AdminLogin from "./components/admin/AdminLogin";
 import UserLogin from "./components/user/UserLogin";
 import UserRegister from "./components/user/UserRegister";
 import RestaurantLogin from "./components/restaurants/RestaurantLogin";
@@ -22,9 +22,8 @@ import LoadingBar from 'react-top-loading-bar'
 import { Toaster } from "react-hot-toast";
 
 
-import { use, useContext } from "react";
+import { useContext } from "react";
 import { MyStateContext } from "./context/Context";
-import { useEffect } from "react";
 import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
