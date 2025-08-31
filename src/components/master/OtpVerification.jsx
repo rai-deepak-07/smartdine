@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+
 const OtpVerification = () => {
     const items = [
         { id: 1, name: 'otp1' },

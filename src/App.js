@@ -27,7 +27,7 @@ import { MyStateContext } from "./context/Context";
 import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
-import OtpVerification from "./components/user/OtpVerification";
+import OtpVerification from "./components/master/OtpVerification";
 
 const App = () => {
 
