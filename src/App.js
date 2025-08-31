@@ -48,6 +48,7 @@ const App = () => {
               <Route path="/" element={<GeneralLayout />}>
                 <Route index element={<Home />} />
               </Route>
+              <Route path="otp-verification" element={<OtpVerification />} />
 
               {/* Restaurant routes */}
               <Route path="restaurant-login" element={<RestaurantLogin />} />
@@ -60,10 +61,10 @@ const App = () => {
                 </Route>
               </Route>
 
-
               {/* User Pannel Routes*/}
               <Route path="user-login" element={<UserLogin />} />
               <Route path="user-register" element={<UserRegister />} />
+
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />} >
                 <Route index element = {<UserDashboard/>}/>
