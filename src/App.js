@@ -27,6 +27,7 @@ import { MyStateContext } from "./context/Context";
 import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
+import OtpVerification from "./components/user/OtpVerification";
 
 const App = () => {
 
@@ -65,7 +66,8 @@ const App = () => {
               <Route path="user-register" element={<UserRegister />} />
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />} >
-                  <Route index element={<UserDashboard />} />
+                <Route index element = {<UserDashboard/>}/>
+                <Route path="otp-verification" element = {<OtpVerification/>}/>
                 </Route>
               </Route>
 
