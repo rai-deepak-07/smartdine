@@ -5,7 +5,7 @@ const API_BASE_URL = process.env.REACT_APP_BASE_API;
 
 const ApiService = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 5000,
+  timeout: 0,
   headers: {
     'Content-Type': 'application/json',
     // Add x-api-key header for authorization

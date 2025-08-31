@@ -1,9 +1,9 @@
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { AdminContext } from '../../context/Context'
 import { useContext, useEffect } from 'react';
 
 const AdminLayout = () => {
-  const { isAdminLoggedIn, setIsAdminLoggedIn, adminData, setAdminData } = useContext(AdminContext);
+  const { isAdminLoggedIn} = useContext(AdminContext);
   const location = useLocation();
   const navigate = useNavigate();
 
