@@ -27,6 +27,7 @@ import { useEffect } from "react";
 import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
+import ParternsWithUs from "./components/restaurants/partners/ParternsWithUs";
 
 const App = () => {
 
@@ -45,9 +46,10 @@ const App = () => {
 
               {/* General layout Routes */}
               <Route path="/" element={<GeneralLayout />}>
-                <Route index element={<Home />} />
+                {/* <Route index element={<Home />} /> */}
               </Route>
 
+               <Route path="partner-with-us" element={<ParternsWithUs/>}/>
               {/* Restaurant routes */}
               <Route path="restaurant-login" element={<RestaurantLogin />} />
               <Route path="restaurant-register" element={<RestaurantRegister />} />

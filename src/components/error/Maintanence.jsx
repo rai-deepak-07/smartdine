@@ -9,319 +9,158 @@
 //   )
 // }
 
-// export default Maintanence
-
-
 import React, { useState, useEffect } from "react";
-import Maintanence from "./Maintanence";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function App() {
-  const [maintenance, setMaintenance] = useState(false);
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState("");
-  const [activeTab, setActiveTab] = useState("countdown");
-  const [progress, setProgress] = useState(0);
-
-  // Set your target date
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 218);
-
-  const calculateTimeLeft = () => {
-    const difference = +targetDate - +new Date();
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    } else {
-      timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-
-    return timeLeft;
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+const ComingSoon = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  });
 
   useEffect(() => {
+    const targetDate = new Date("Dec 31, 2025 23:59:59").getTime();
+
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        setTimeLeft({ days: "0", hours: "0", minutes: "0", seconds: "0" });
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({
+        days: days.toString().padStart(2, '0'),
+        hours: hours.toString().padStart(2, '0'),
+        minutes: minutes.toString().padStart(2, '0'),
+        seconds: seconds.toString().padStart(2, '0'),
+      });
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
-  // Progress bar simulation
-  useEffect(() => {
-    const progressTimer = setInterval(() => {
-      setProgress((oldProgress) => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 800);
-    
-    return () => {
-      clearInterval(progressTimer);
-    };
-  }, []);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email) {
-      showNotificationWithMessage("Please enter a valid email address");
-      return;
-    }
-    
-    // Simulate API call
-    setTimeout(() => {
-      setSubscribed(true);
-      setEmail("");
-      showNotificationWithMessage("Thank you for subscribing!");
-    }, 500);
-  };
-
-  const showNotificationWithMessage = (message) => {
-    setNotificationMessage(message);
-    setShowNotification(true);
-    setTimeout(() => setShowNotification(false), 3000);
-  };
-
-  const handleContact = () => {
-    showNotificationWithMessage("Contact form will appear here!");
-  };
-
-  const handleSocialShare = (platform) => {
-    const shareUrls = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this upcoming website!`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`
-    };
-    
-    window.open(shareUrls[platform], '_blank');
-  };
-
-  // If maintenance mode ON → show Maintanence page
-  if (maintenance) {
-    return <Maintanence />;
-  }
-
   return (
-    <div className="min-h-screen bg-dark text-white" style={{ 
-      background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-    }}>
-      {/* Animated background elements */}
-      <div className="position-absolute top-0 start-0 w-100 h-100 opacity-10 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div 
-            key={i} 
-            className="position-absolute rounded-circle bg-warning"
-            style={{
-              width: Math.random() * 50 + 10 + 'px',
-              height: Math.random() * 50 + 10 + 'px',
-              top: Math.random() * 100 + '%',
-              left: Math.random() * 100 + '%',
-              animation: `pulse ${Math.random() * 5 + 3}s infinite ${Math.random() * 2}s both`
-            }}
-          />
-        ))}
-      </div>
+    <div className="min-vh-100 d-flex flex-column position-relative text-white overflow-hidden">
+      {/* Background */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100"
+        style={{
+          background:
+            "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') no-repeat center center/cover",
+        }}
+      ></div>
 
-      <div className="container min-vh-100 d-flex align-items-center justify-content-center py-5">
-        <div className="bg-dark bg-opacity-75 p-4 p-md-5 rounded-4 shadow-lg text-center w-100" style={{ maxWidth: '650px', backdropFilter: 'blur(10px)' }}>
-          <h1 className="display-4 fw-bold mb-2 text-warning">Coming Soon</h1>
-          <p className="lead text-warning mb-3">
-            Our website is under construction now
-          </p>
-          <p className="text-light mb-5">
-            We Are Working Very Hard To Give You The Best Experience With This One
-          </p>
+      {/* Dark Overlay */}
+      <div
+        className="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-75"
+        style={{ backdropFilter: "blur(3px)" }}
+      ></div>
 
-          {/* Progress bar */}
-          <div className="progress mb-4" style={{ height: '8px' }}>
-            <div 
-              className="progress-bar progress-bar-striped progress-bar-animated bg-warning" 
-              role="progressbar" 
-              style={{ width: `${progress}%` }}
-              aria-valuenow={progress} 
-              aria-valuemin="0" 
-              aria-valuemax="100"
-            ></div>
+      {/* Main Content Container */}
+      <div className="container d-flex flex-column justify-content-between flex-grow-1 py-4 py-md-5 position-relative z-1">
+        
+        {/* Header Section */}
+        <div className="row justify-content-center pt-4 pt-md-5">
+          <div className="col-12 text-center">
+            <h1 className="fw-bold display-6 display-md-2 mb-0">
+              <span className="text-warning">🏨</span> SmartDine
+            </h1>
           </div>
-          <p className="small text-muted mb-4">Development Progress: {Math.round(progress)}%</p>
+        </div>
 
-          {/* Tab navigation */}
-          <ul className="nav nav-pills justify-content-center mb-4 border-bottom pb-3">
-            <li className="nav-item">
-              <button 
-                className={`nav-link ${activeTab === 'countdown' ? 'active bg-warning text-dark' : 'text-light'}`}
-                onClick={() => setActiveTab('countdown')}
-              >
-                Countdown
-              </button>
-            </li>
-            <li className="nav-item">
-              <button 
-                className={`nav-link ${activeTab === 'subscribe' ? 'active bg-warning text-dark' : 'text-light'}`}
-                onClick={() => setActiveTab('subscribe')}
-              >
-                Notify Me
-              </button>
-            </li>
-          </ul>
-
-          {/* Tab content */}
-          {activeTab === 'countdown' && (
-            <div className="row g-3 mb-4">
-              <div className="col-6 col-md-3">
-                <div className="bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary">
-                  <div className="display-5 fw-bold">{timeLeft.days}</div>
-                  <div className="small text-muted">Days</div>
-                </div>
-              </div>
-              <div className="col-6 col-md-3">
-                <div className="bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary">
-                  <div className="display-5 fw-bold">{timeLeft.hours}</div>
-                  <div className="small text-muted">Hours</div>
-                </div>
-              </div>
-              <div className="col-6 col-md-3">
-                <div className="bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary">
-                  <div className="display-5 fw-bold">{timeLeft.minutes}</div>
-                  <div className="small text-muted">Minutes</div>
-                </div>
-              </div>
-              <div className="col-6 col-md-3">
-                <div className="bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary">
-                  <div className="display-5 fw-bold">{timeLeft.seconds}</div>
-                  <div className="small text-muted">Seconds</div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'subscribe' && (
-            <div className="mb-4">
-              {subscribed ? (
-                <div className="alert alert-success bg-success bg-opacity-25 border border-success">
-                  <i className="fas fa-check-circle me-2"></i>
-                  You're subscribed! We'll notify you when we launch.
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="d-flex flex-column flex-md-row gap-2 justify-content-center">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="form-control bg-dark bg-opacity-50 text-light border-secondary"
-                    style={{ minWidth: '200px' }}
-                  />
-                  <button 
-                    type="submit"
-                    className="btn btn-warning text-dark fw-semibold"
-                  >
-                    Notify Me
-                  </button>
-                </form>
-              )}
-            </div>
-          )}
-
-          <div className="d-flex flex-column flex-md-row gap-3 justify-content-center mb-4">
-            <button 
-              onClick={handleContact}
-              className="btn btn-warning text-dark fw-semibold"
-            >
-              <i className="fas fa-envelope me-2"></i>Contact Us
-            </button>
+        {/* Main Content Section */}
+        <div className="row justify-content-center my-auto py-4">
+          <div className="col-12 col-md-10 col-lg-8 text-center">
             
-            <button 
-              onClick={() => setMaintenance(true)}
-              className="btn btn-outline-light"
-            >
-              <i className="fas fa-tools me-2"></i>Maintenance Mode
-            </button>
-          </div>
+            {/* Heading */}
+            <h2 className="fw-bold display-3 display-md-3 mb-3 mb-md-4">
+              Coming Soon
+            </h2>
+            
+            {/* Subheading */}
+            <h3 className="text-light mb-3 fs-4 fs-md-3">
+              Our website is under construction
+            </h3>
+            
+            {/* Description */}
+            <p className="text-light fs-5 mb-4 mb-md-5 lh-lg">
+              We are working very hard to give you the best dining experience with innovative features.
+            </p>
 
-          <div className="d-flex align-items-center justify-content-center gap-3 mb-4">
-            <span className="text-muted">Share:</span>
-            <button 
-              onClick={() => handleSocialShare('facebook')}
-              className="btn btn-outline-light btn-sm"
-            >
-              <i className="fab fa-facebook-f"></i>
-            </button>
-            <button 
-              onClick={() => handleSocialShare('twitter')}
-              className="btn btn-outline-light btn-sm"
-            >
-              <i className="fab fa-twitter"></i>
-            </button>
-            <button 
-              onClick={() => handleSocialShare('linkedin')}
-              className="btn btn-outline-light btn-sm"
-            >
-              <i className="fab fa-linkedin-in"></i>
-            </button>
-          </div>
+            {/* Countdown Timer */}
+            <div className="d-flex justify-content-center gap-3 gap-md-4 gap-lg-5 mb-4 mb-md-5 flex-wrap">
+              {Object.entries(timeLeft).map(([unit, value]) => (
+                <div key={unit} className="d-flex flex-column align-items-center px-3 py-3 rounded-4" 
+                     style={{ background: 'rgba(255, 255, 255, 0.1)', minWidth: '90px', backdropFilter: 'blur(5px)' }}>
+                  <h2 className="fw-bold display-4 mb-0 countdown-number">{value}</h2>
+                  <span className="text-uppercase small mt-2 opacity-75">
+                    {unit}
+                  </span>
+                </div>
+              ))}
+            </div>
 
-          <footer className="mt-4 small text-muted">
-            © 2025 Hotel Coming Soon. All Rights Reserved | Design By You
-          </footer>
+            {/* Contact Button */}
+            <a
+              href="mailto:info@example.com"
+              className="btn btn-outline-light px-4 px-md-5 py-2 py-md-3 fs-5 fw-semibold rounded-3 mt-3"
+              style={{ 
+                transition: 'all 0.3s',
+                borderWidth: '2px',
+              }}
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+
+        {/* Footer with Copyright */}
+        <div className="row justify-content-center pb-3">
+          <div className="col-12 text-center">
+            <p className="small opacity-75 mb-0">
+              © 2025 SmartDine. All Rights Reserved.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Notification Toast */}
-      {showNotification && (
-        <div className="position-fixed bottom-0 end-0 m-4">
-          <div className="toast show" role="alert">
-            <div className="toast-header bg-warning text-dark">
-              <strong className="me-auto">Notification</strong>
-              <button 
-                type="button" 
-                className="btn-close" 
-                onClick={() => setShowNotification(false)}
-              ></button>
-            </div>
-            <div className="toast-body bg-dark text-light">
-              {notificationMessage}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Inline styles for animations */}
+      {/* Custom styles */}
       <style>
         {`
-          @keyframes pulse {
-            0% { opacity: 0.3; transform: scale(0.95); }
-            50% { opacity: 0.6; transform: scale(1.05); }
-            100% { opacity: 0.3; transform: scale(0.95); }
+          @media (max-width: 768px) {
+            .display-4 {
+              font-size: 2.5rem;
+            }
+            
+            .countdown-number {
+              font-size: 2rem;
+            }
           }
           
-          .bg-dark {
-            background-color: #1a1a1a !important;
-          }
-          
-          .btn-warning {
-            background-color: #ffc107;
-            border-color: #ffc107;
-          }
-          
-          .btn-warning:hover {
-            background-color: #e0a800;
-            border-color: #e0a800;
+          .countdown-number {
+            background: linear-gradient(135deg, #fff 0%, #e6e6e6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
           }
         `}
       </style>
     </div>
   );
-}
+};
+
+export default ComingSoon;
