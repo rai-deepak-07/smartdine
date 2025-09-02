@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
 
 import RestaurantState from "./context/RestaurantState";
 import UserState from "./context/UserState";
@@ -28,10 +29,16 @@ import Home from "./components/general/home/Home";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
 import OtpVerification from "./components/master/OtpVerification";
+import Upi from "./components/UPI";
+import Aos from "aos";
+import { useEffect } from "react";
 
 const App = () => {
 
   const { progress } = useContext(MyStateContext);
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     <BrowserRouter basename="/smartdine">
@@ -47,7 +54,10 @@ const App = () => {
               {/* General layout Routes */}
               <Route path="/" element={<GeneralLayout />}>
                 <Route index element={<Home />} />
+              <Route path="user-login" element={<UserLogin />} />
               </Route>
+
+              <Route path="payment" element={<Upi  upiId="stunningchandankmg3366-1@okicici" name="Chandan Gupta" amount="1.00" note="Payment for Testing" />} />
               <Route path="otp-verification" element={<OtpVerification />} />
 
               {/* Restaurant routes */}
@@ -62,7 +72,6 @@ const App = () => {
               </Route>
 
               {/* User Pannel Routes*/}
-              <Route path="user-login" element={<UserLogin />} />
               <Route path="user-register" element={<UserRegister />} />
 
               <Route element={<UserProtected />}>
