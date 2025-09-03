@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import ApiService from '../../apiservice/ApiService';
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
+import emailjs from "emailjs-com";
+
 import { MainContext, ResturantContext } from '../../context/Context';
 
 const RestaurantRegister = () => {
@@ -120,7 +122,56 @@ const RestaurantRegister = () => {
     !formFields.terms_accepted
 
 
-const handleSubmit = (e) => {
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+
+//   if (!validateBeforeSubmit()) return;
+
+//   const data = new FormData();
+//   Object.entries(formFields).forEach(([key, value]) => {
+//     data.append(key, value);
+//   });
+
+//   if (fssaiPdf) data.append("fssai_license_url", fssaiPdf);
+//   if (gstPdf) data.append("gst_registration_url", gstPdf);
+
+//   toast.promise(
+//     ApiService.post("restaurant/registration/", data, {
+//       headers: { "Content-Type": "multipart/form-data" },
+//       timeout: 0,
+//     })
+//       .then((res) => {
+//         // ✅ Only send email if registration succeeded
+//         return sendWelcomeEmail(
+//           formFields.owner_name,
+//           formFields.res_name,
+//           formFields.email
+//         )
+//           .then(() => {
+//             navigate("/restaurant-login");
+//             return "Registration successful! 🎉"; // success message
+//           })
+//           .catch((err) => {
+//             console.error("📧 Email sending failed:", err);
+//             // still navigate, but show partial success
+//             navigate("/restaurant-login");
+//             return "Registration successful, but email not sent.";
+//           });
+//       })
+//       .catch((err) => {
+//         console.error("❌ Registration failed:", err);
+//         throw err;
+//       }),
+//     {
+//       loading: "Submitting your registration...",
+//       success: (msg) => msg,
+//       error: (err) => err.message || "Registration failed!",
+//     }
+//   );
+// };
+
+
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   if (!validateBeforeSubmit()) return;
@@ -133,41 +184,33 @@ const handleSubmit = (e) => {
   if (fssaiPdf) data.append("fssai_license_url", fssaiPdf);
   if (gstPdf) data.append("gst_registration_url", gstPdf);
 
+  const otp = Math.floor(10000 + Math.random() * 90000).toString();
+
   toast.promise(
-    ApiService.post("restaurant/registration/", data, {
-      headers: { "Content-Type": "multipart/form-data" },
-      timeout: 0,
-    })
-      .then((res) => {
-        // ✅ Only send email if registration succeeded
-        return sendWelcomeEmail(
-          formFields.owner_name,
-          formFields.res_name,
-          formFields.email
-        )
-          .then(() => {
-            navigate("/restaurant-login");
-            return "Registration successful! 🎉"; // success message
-          })
-          .catch((err) => {
-            console.error("📧 Email sending failed:", err);
-            // still navigate, but show partial success
-            navigate("/restaurant-login");
-            return "Registration successful, but email not sent.";
-          });
-      })
-      .catch((err) => {
-        console.error("❌ Registration failed:", err);
-        throw err;
-      }),
+    emailjs.send(
+      process.env.REACT_APP_EMAIL_JS_SERVICE_ID,
+      process.env.REACT_APP_USER_OTP_TEMPLATE_ID, // 👈 make separate template
+      {
+        to_email: formFields.email,
+        otp: otp,
+        // res_name: formFields.res_name,
+        // owner_name: formFields.owner_name,
+      },
+      process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY
+    ),
     {
-      loading: "Submitting your registration...",
-      success: (msg) => msg,
-      error: (err) => err.message || "Registration failed!",
+      loading: "Sending OTP...",
+      success: () => {
+        navigate("/otp-verification", { state: { data: Object.fromEntries(data), otp, type: "restaurant" } });
+        return "OTP sent to your email!";
+      },
+      error: (err) => {
+        console.error("EmailJS error:", err);
+        return "Failed to send OTP. Try again!";
+      },
     }
   );
 };
-
 
   useEffect(() => {
     getLocations();

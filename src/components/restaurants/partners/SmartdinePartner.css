@@ -1,0 +1,89 @@
+    nav {
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    nav.scrolled {
+      background: #fff !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    nav.scrolled .navbar-brand {
+      color: #000 !important;
+    }
+
+    nav.scrolled .btn-outline-light {
+      border-color: #555 !important;
+      color: #000 !important;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 90vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero .overlay {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 800px;
+    }
+
+    .accordion-button:focus {
+      box-shadow: none;
+    }
+
+    .tick-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #28a745;
+      color: #fff;
+      font-size: 14px;
+      margin-right: 8px;
+    }
+
+    .ratio iframe {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .get-started-card {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+      content: "";
+      flex: 1;
+      border-bottom: 2px solid #ddd;
+      margin: 0 1rem;
+    }

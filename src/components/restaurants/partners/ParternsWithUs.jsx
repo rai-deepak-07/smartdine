@@ -11,8 +11,6 @@ const ParternsWithUs = () => {
    <Home/>
    <Features/>
    <Faq/>
-
-
    </>
   )
 }

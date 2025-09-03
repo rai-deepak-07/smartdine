@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import ApiService from '../../apiservice/ApiService';
+import emailjs from "emailjs-com";
+
 
 const UserRegister = () => {
 
@@ -28,45 +30,66 @@ const UserRegister = () => {
   return true;
 };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!validateBeforeSubmit()) {
-      // toast.error('Please fix the validation errors before submitting.');
-      return;
-    }
+  if (!validateBeforeSubmit()) return;
 
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+  const otp = Math.floor(10000 + Math.random() * 90000).toString();
 
-    toast.promise(
-      ApiService.post('/user/registration/', data,{
-        headers: {'Content-Type': 'multipart/form-data'}
-      }),
+  // 📌 Wrap with toast.promise
+  toast.promise(
+    emailjs.send(
+      process.env.REACT_APP_EMAIL_JS_SERVICE_ID,
+      process.env.REACT_APP_USER_OTP_TEMPLATE_ID,
       {
-        loading: 'Registering...',
-        success: () => {
-          navigate('/user-login');
-          return 'Registration successfully!';
-        },
-        error: (error) => {
-          let msg = "";
-          console.log(error);
-          if (error.response?.status === 400) {
-            if (error.response.data.user_email) {
-              msg = "Email Already Exist!";
-            }
-            if (error.response.data.user_mobile_no) {
-              msg = "Mobile No Already Exist!";
-            }
-            toast.error(msg || 'Invalid data provided.');
-          }
-        },
-      }
-    );
-  }
+        to_email: formData.user_email,
+        otp: otp,
+      },
+      process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY
+    ),
+    {
+      loading: "Sending OTP...",
+      success: () => {
+
+        navigate("/otp-verification", { state: { data: formData, otp, type: "user" } });
+        return "OTP sent to your email!";
+      },
+      error: (err) => {
+        console.error("EmailJS error:", err);
+        return "Failed to send OTP. Try again!";
+      },
+    }
+  );
+};
+
+
+  //   toast.promise(
+  //     ApiService.post('/user/registration/', data,{
+  //       headers: {'Content-Type': 'multipart/form-data'}
+  //     }),
+  //     {
+  //       loading: 'Registering...',
+  //       success: () => {
+  //         navigate('/user-login');
+  //         return 'Registration successfully!';
+  //       },
+  //       error: (error) => {
+  //         let msg = "";
+  //         console.log(error);
+  //         if (error.response?.status === 400) {
+  //           if (error.response.data.user_email) {
+  //             msg = "Email Already Exist!";
+  //           }
+  //           if (error.response.data.user_mobile_no) {
+  //             msg = "Mobile No Already Exist!";
+  //           }
+  //           toast.error(msg || 'Invalid data provided.');
+  //         }
+  //       },
+  //     }
+  //   );
+  // }
 
 
   return (
