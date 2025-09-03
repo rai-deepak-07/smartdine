@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
 import React, { useContext, useEffect } from 'react'
+import Maintanence from '../../error/Maintanence'
 import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 // import LoadingBar from 'react-top-loading-bar'
+
 
 import { MyStateContext } from '../../../context/Context'
 
@@ -22,7 +25,10 @@ const GeneralLayout = () => {
     <>
       {/* Header Section */}
 
+
       <Header />
+      <Link to = "http://localhost:3000/smartdine/partner-with-us" className='btn btn-primary'>Add</Link>
+      <Maintanence/>
 
       {/* Main Content Section */}
       <Outlet />
