@@ -25,7 +25,7 @@ import { Toaster } from "react-hot-toast";
 
 import { useContext } from "react";
 import { MyStateContext } from "./context/Context";
-import Home from "./components/general/home/Home";
+import Main from "./components/general/Main";
 import RestaurantProtected from "./components/restaurants/RestaurantProtected";
 import UserProtected from "./components/user/UserProtected";
 import OtpVerification from "./components/master/OtpVerification";
@@ -53,7 +53,7 @@ const App = () => {
 
               {/* General layout Routes */}
               <Route path="/" element={<GeneralLayout />}>
-                <Route index element={<Home />} />
+                <Route index element={<Main />} />
               <Route path="user-login" element={<UserLogin />} />
               </Route>
 

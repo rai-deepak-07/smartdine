@@ -14,23 +14,62 @@ $color4: white;
 }
 
 // Different color classes
-.cl1 { color: $color; }
-.cl2 { color: $color1; }
-.cl3 { color: $color2; }
-.cl4 { color: $color3; }
-.cl5 { color: $color4; }
+.cl1 {
+  color: $color;
+}
 
-.clb1 { background-color: $color; }
-.clb2 { background-color: $color1; }
-.clb3 { background-color: $color2; }
-.clb4 { background-color: $color3; }
+.cl2 {
+  color: $color1;
+}
 
-$font1: Georgia, 'Times New Roman', Times, serif; 
+.cl3 {
+  color: $color2;
+}
+
+.cl4 {
+  color: $color3;
+}
+
+.cl5 {
+  color: $color4;
+}
+
+// Different Background color classes
+.clb1 {
+  background-color: $color;
+}
+
+.clb2 {
+  background-color: $color1;
+}
+
+.clb3 {
+  background-color: $color2;
+}
+
+.clb4 {
+  background-color: $color3;
+}
+
+$font1: Georgia, 'Times New Roman', Times, serif;
+
 //Different font style classes
-.f1 { font-family: $font1; }
-.f2 { font-family: 'Georgia', serif; }
-.f3 { font-family: 'Courier New', monospace; }
-.f4 { font-family: 'Tahoma', sans-serif; }
+.f1 {
+  font-family: $font1;
+}
+
+.f2 {
+  font-family: 'Georgia', serif;
+}
+
+.f3 {
+  font-family: 'Courier New', monospace;
+}
+
+.f4 {
+  font-family: 'Tahoma', sans-serif;
+}
+
 
 
 
@@ -46,7 +85,7 @@ $font1: Georgia, 'Times New Roman', Times, serif;
 // $bg_image :'../assets/image/general/food.jpg';
 $bg_image :'../assets/image/general/pizza-8968566.png';
 
-.smartdine-banner{
+.smartdine-banner {
   background-image: url($bg_image);
   position: relative;
   width: 100%;
@@ -61,10 +100,13 @@ $bg_image :'../assets/image/general/pizza-8968566.png';
 
 .smartdine-overlay {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.6);
 }
+
 .smartdine-content {
   position: relative;
   color: $color4;
@@ -80,24 +122,47 @@ $bg_image :'../assets/image/general/pizza-8968566.png';
   margin-bottom: 1rem;
 }
 
-.sub-title{
+.sub-title {
   font-size: 2.5rem;
   font-family: $font1;
   font-weight: normal;
   margin-bottom: 1rem;
-  
-  span:first-child{
+
+  span:first-child {
     font-weight: bold;
     font-style: italic;
-    color: $color2; ;
+    color: $color2;
+    ;
   }
 
-  span:last-child{
+  span:last-child {
     font-style: italic;
     color: $color;
   }
 }
 
+
+@media only screen and (max-width: 993px) {}
+
+// Tablet Screen
+@media only screen and (max-width: 767px) {
+  .title {
+    font-size: 4rem;
+  }
+  .sub-title {
+    font-size: 2rem;
+  }
+}
+
+// Mobile Screen
+@media only screen and (max-width: 425px) {
+  .title {
+    font-size: 3rem;
+  }
+  .sub-title {
+    font-size: 1.5rem;
+  }
+}
 
 
 // General Panel CSS End Here
