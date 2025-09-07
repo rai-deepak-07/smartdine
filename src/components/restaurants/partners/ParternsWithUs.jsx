@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from './Header'
-import Faq from './Faq'
-import Features from './Features'
 import Home from './Home'
+import Features from './Features'
+import Faq from './Faq'
+import Footer from '../../general/layout/Footer'
 
 const ParternsWithUs = () => {
   return (
@@ -11,6 +12,7 @@ const ParternsWithUs = () => {
    <Home/>
    <Features/>
    <Faq/>
+   <Footer/>
    </>
   )
 }

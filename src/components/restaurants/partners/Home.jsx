@@ -21,12 +21,15 @@ const SmartdinePartner = () => {
       <section className="hero">
         <div className="overlay">
           <h1 className="fw-bold display-5">
-            Partner with Smartdine and grow your business
+            <span className="">
+              Partner with <span>SmartDine</span> and grow your business
+              <span></span>
+            </span>
           </h1>
-          
-          <button className="btn btn-danger btn-lg mt-3">
+
+          <Link to="/restaurant-register" className="btn btn-outline-warning rounded-0 mt-3">
             Register your restaurant
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -36,7 +39,7 @@ const SmartdinePartner = () => {
             <div className="bg-white rounded shadow-sm p-4 get-started-card">
               <div className="row g-4 align-items-center">
                 <div className="col-lg-7">
-                  <h2 className="h5 mb-2">Get Started - It only takes 10 minutes</h2>
+                  <h2 className="h5 mb-2 ">Get Started - It only takes 10 minutes</h2>
                   <p className="text-muted small mb-4">
                     Please keep these documents and details ready for a smooth
                     sign-up

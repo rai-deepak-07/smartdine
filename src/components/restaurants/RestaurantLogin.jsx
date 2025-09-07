@@ -68,10 +68,10 @@ const RestaurantLogin = () => {
               <div className="row">
                 <div className="col-md-1"></div>
                 <div className="col-md-5 py-md-5">
-                  <div className="card-body p-4">
-                    <h1 className="card-title text-center mb-4 cl4">
+                  <div className="card-body p-md-4 px-2 py-3">
+                    <h3 className="card-title text-center fs-2 mb-4 cl4">
                       Restaurant Login
-                    </h1>
+                    </h3>
 
                     <p className="text-center text-muted mb-4">
                       Welcome back! Please login to your account
@@ -81,7 +81,7 @@ const RestaurantLogin = () => {
                     <form onSubmit={handleLogin}>
                       <input
                         type="text"
-                        className="form-control form-control-lg rounded-5 mt-2 mb-4"
+                        className="form-control form-control rounded-1 mt-2 mb-4"
                         name="res_login_id"
                         maxLength={100}
                         value={formFields.res_login_id}
@@ -92,7 +92,7 @@ const RestaurantLogin = () => {
 
                       <input
                         type="password"
-                        className="form-control form-control-lg rounded-5 mt-2 mb-4"
+                        className="form-control form-control rounded-1 mt-2 mb-4"
                         name="res_login_password"
                         minLength={8}
                         maxLength={128}
@@ -103,19 +103,13 @@ const RestaurantLogin = () => {
                       />
 
                       <div className="text-end mb-4">
-                        <Link
-                          to="/"
-                          className="text-decoration-none fw-semibold cl4"
-                        >
+                        <Link to="/" className="text-decoration-none fw-semibold cl4">
                           Forgot Password?
                         </Link>
                       </div>
 
                       <div className="d-grid mb-3">
-                        <button
-                          type="submit"
-                          className="btn btn-lg btn-dark rounded-4 rounded-5"
-                        >
+                        <button type="submit" className="btn btn btn-dark rounded-2">
                           Login
                         </button>
                       </div>
@@ -132,18 +126,18 @@ const RestaurantLogin = () => {
                       <div className="d-grid mb-3">
                         <button
                           type="button"
-                          className="btn btn-outline-secondary w-100 "
+                          className="btn btn-outline-danger w-100 "
                         >
-                          <i className="fab fa-google me-2"></i> Google
+                          <i className="bi bi-google me-2"></i> Google
                         </button>
                       </div>
 
                       <div className="d-grid mb-3">
                         <button
                           type="button"
-                          className="btn btn-outline-secondary w-100"
+                          className="btn btn-outline-primary w-100"
                         >
-                          <i className="fab fa-facebook-f me-2"></i> Facebook
+                          <i className="bi bi-facebook me-2"></i> Facebook
                         </button>
                       </div>
 
@@ -152,7 +146,7 @@ const RestaurantLogin = () => {
                           Don't have an account?{" "}
                           <Link
                             to="/restaurant-register"
-                            className="text-danger text-decoration-none"
+                            className="text-danger fw-semibold text-decoration-none"
                           >
                             Register Now
                           </Link>

@@ -1,18 +1,15 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div>
-      <nav className="navbar fixed-top navbar-expand-lg bg-transparent">
+    <nav className="navbar fixed-top navbar-expand-lg bg-transparent">
         <div className="container">
           <Link className="navbar-brand text-white" to="/">
-            smartdine
+            SmartDine
           </Link>
-          <button className="btn btn-outline-light rounded-pill">Login</button>
+          <Link to="/restaurant-login" className="btn btn-outline-light rounded-pill px-5">Login</Link>
         </div>
       </nav>
-    </div>
   );
 };
 

@@ -1,13 +1,16 @@
-import React from 'react'
-import { MainContext } from '../../../context/Context'
-import { useContext } from 'react';
 
 const Home = () => {
-    const { mainData } = useContext(MainContext);
     return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>Main Data: {mainData}</p>
+    <div className='smartdine-banner' id='home_main'>
+      <div className="smartdine-overlay"></div>
+      <div className="smartdine-content">
+        <h1 className='title' data-aos="zoom-in" data-aos-duration="1000">SmartDine</h1>
+        <p className='sub-title' data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1500">
+          <span>Book ahead,</span>
+          <span> skip the queue, and dine <br /> like a</span> 
+          <span> VIP !!!</span>
+        </p>
+      </div>
     </div>
   )
 }
