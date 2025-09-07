@@ -30,19 +30,16 @@ const Footer = () => {
             <h6 className="fw-bold mb-2 d-block text-uppercase">For Restaurants</h6>
             <ul class="nav flex-column small">
               <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Home</Link >
+                <Link to="/partner-with-us" class="nav-link p-0 text-body-secondary">Partner With Us</Link >
               </li>
               <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Features</Link>
+                <Link to="/restaurant-login" class="nav-link p-0 text-body-secondary">LogIn</Link >
               </li>
               <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Pricing</Link >
+                <Link to="/restaurant-register" class="nav-link p-0 text-body-secondary">SignIn</Link >
               </li>
               <li class="nav-item mb-2">
                 <Link to="#" class="nav-link p-0 text-body-secondary">FAQs</Link >
-              </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">About</Link >
               </li>
             </ul>
           </div>

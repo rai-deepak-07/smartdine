@@ -14,8 +14,8 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    const navbar = document.getElementById('general-navbar');
-    location.pathname!=='/'? navbar.classList.add('navbar-scrolled'):navbar.classList.remove('navbar-scrolled');
+    // const navbar = document.getElementById('general-navbar');
+    // location.pathname!=='/'? navbar.classList.add('navbar-scrolled'):navbar.classList.remove('navbar-scrolled');
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);

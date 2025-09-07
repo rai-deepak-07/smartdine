@@ -1,7 +1,8 @@
+import bgImg from '../../../assets/image/general/pizza-8968566.png'
 
 const Home = () => {
     return (
-    <div className='smartdine-banner' id='home_main'>
+    <div className='smartdine-banner' style={{backgroundImage: `url(${bgImg})`}} id='home_main'>
       <div className="smartdine-overlay"></div>
       <div className="smartdine-content">
         <h1 className='title' data-aos="zoom-in" data-aos-duration="1000">SmartDine</h1>

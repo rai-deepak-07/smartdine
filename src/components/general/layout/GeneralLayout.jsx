@@ -4,7 +4,6 @@ import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 // import LoadingBar from 'react-top-loading-bar'
 
-
 import { MyStateContext } from '../../../context/Context'
 
 const GeneralLayout = () => {

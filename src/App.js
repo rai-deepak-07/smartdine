@@ -55,6 +55,9 @@ const App = () => {
               {/* General layout Routes */}
               <Route path="/" element={<GeneralLayout />}>
                 <Route index element={<Main />} />
+                
+                {/* User Pannel Routes*/}
+                <Route path="user-register" element={<UserRegister />} />
                 <Route path="user-login" element={<UserLogin />} />
               </Route>
               
@@ -76,8 +79,6 @@ const App = () => {
                 </Route>
               </Route>
 
-              {/* User Pannel Routes*/}
-              <Route path="user-register" element={<UserRegister />} />
 
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />} >
