@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import ApiService from '../../apiservice/ApiService';
+import emailjs from "emailjs-com";
+
 
 const UserRegister = () => {
 
@@ -28,45 +30,66 @@ const UserRegister = () => {
   return true;
 };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!validateBeforeSubmit()) {
-      // toast.error('Please fix the validation errors before submitting.');
-      return;
-    }
+  if (!validateBeforeSubmit()) return;
 
-    const data = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
+  const otp = Math.floor(10000 + Math.random() * 90000).toString();
 
-    toast.promise(
-      ApiService.post('/user/registration/', data,{
-        headers: {'Content-Type': 'multipart/form-data'}
-      }),
+  // 📌 Wrap with toast.promise
+  toast.promise(
+    emailjs.send(
+      process.env.REACT_APP_EMAIL_JS_SERVICE_ID,
+      process.env.REACT_APP_USER_OTP_TEMPLATE_ID,
       {
-        loading: 'Registering...',
-        success: () => {
-          navigate('/user-login');
-          return 'Registration successfully!';
-        },
-        error: (error) => {
-          let msg = "";
-          console.log(error);
-          if (error.response?.status === 400) {
-            if (error.response.data.user_email) {
-              msg = "Email Already Exist!";
-            }
-            if (error.response.data.user_mobile_no) {
-              msg = "Mobile No Already Exist!";
-            }
-            toast.error(msg || 'Invalid data provided.');
-          }
-        },
-      }
-    );
-  }
+        to_email: formData.user_email,
+        otp: otp,
+      },
+      process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY
+    ),
+    {
+      loading: "Sending OTP...",
+      success: () => {
+
+        navigate("/otp-verification", { state: { data: formData, otp, type: "user" } });
+        return "OTP sent to your email!";
+      },
+      error: (err) => {
+        console.error("EmailJS error:", err);
+        return "Failed to send OTP. Try again!";
+      },
+    }
+  );
+};
+
+
+  //   toast.promise(
+  //     ApiService.post('/user/registration/', data,{
+  //       headers: {'Content-Type': 'multipart/form-data'}
+  //     }),
+  //     {
+  //       loading: 'Registering...',
+  //       success: () => {
+  //         navigate('/user-login');
+  //         return 'Registration successfully!';
+  //       },
+  //       error: (error) => {
+  //         let msg = "";
+  //         console.log(error);
+  //         if (error.response?.status === 400) {
+  //           if (error.response.data.user_email) {
+  //             msg = "Email Already Exist!";
+  //           }
+  //           if (error.response.data.user_mobile_no) {
+  //             msg = "Mobile No Already Exist!";
+  //           }
+  //           toast.error(msg || 'Invalid data provided.');
+  //         }
+  //       },
+  //     }
+  //   );
+  // }
 
 
   return (
@@ -93,44 +116,57 @@ const UserRegister = () => {
         <button type='submit'>Register</button>
 
       </form> */}
-   
-   <section
+ 
+<section
   className="d-flex justify-content-center align-items-center vh-100"
   style={{
     backgroundImage:
-      "url('https://www.sysco.com/_next/image?url=https%3A%2F%2Fmediacdn.sysco.com%2Fimages%2Frendition%3Fid%3D494b40b36aa5b5e610afa292cba5eae7b9e18f95%26disp%3Dinline%26prid%3DDEFAULT&w=3840&q=75')",
+      "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlLFggScyGN7Dz3bf8g7Hc4KN803aen2xc4w&s')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
     width: "100%",
     height: "100vh",
     position: "relative"
   }}
 >
-  {/* Dark Overlay */}
-  <div
+  {/* Blurred Background Overlay */}
+  {/* <div
     style={{
       position: "absolute",
-      inset: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.4)", // Dark overlay
+      backdropFilter: "blur(0px)", // ✅ Background blur
+      WebkitBackdropFilter: "blur(0px)",
       zIndex: 1
     }}
-  ></div>
+  ></div> */}
 
-  {/* Registration Card */}
+  {/* Glass Effect Card with Image */}
   <div
-    className="p-4 bg-dark bg-opacity-75 rounded shadow"
+    className="rounded-4 shadow-lg overflow-hidden"
     style={{
       width: "100%",
-      maxWidth: "600px", // ✅ Increased from 420px to 600px
-      zIndex: 2
+      maxWidth: "900px",
+      background: "rgba(6, 6, 6, 0.15)", // Transparent glass effect
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
+      border: "4px solid rgba(9, 9, 9, 0.3)",
+      zIndex: 2,
+      position: "relative",
+      color: "#0a0a0aff"
     }}
   >
-    <h1 className="text-center text-white mb-3">User Registration</h1>
+    <div className="row g-0" style={{ height: "100%" }}>
+      {/* Left: Registration Form */}
+      <div className="col-md-6 p-4 d-flex flex-column justify-content-center">
+       <h1 className="text-center text-black mb-3">User Registration</h1>
     <form onSubmit={handleSubmit}>
       {/* Full Name */}
-      <div className="mb-2">
-        <label htmlFor="user_name" className="form-label text-white">
+      <div className="mb-2 fs-5">
+        <label htmlFor="user_name" className="form-label text-black">
           Name:
         </label>
         <input
@@ -145,8 +181,8 @@ const UserRegister = () => {
       </div>
 
       {/* Email */}
-      <div className="mb-2">
-        <label htmlFor="user_email" className="form-label text-white">
+      <div className="mb-2 fs-5">
+        <label htmlFor="user_email" className="form-label text-black">
           Email:
         </label>
         <input
@@ -161,8 +197,8 @@ const UserRegister = () => {
       </div>
 
       {/* Mobile */}
-      <div className="mb-2">
-        <label htmlFor="user_mobile_no" className="form-label text-white">
+      <div className="mb-2 fs-5">
+        <label htmlFor="user_mobile_no" className="form-label text-black">
           Mobile No:
         </label>
         <input
@@ -178,8 +214,8 @@ const UserRegister = () => {
       </div>
 
       {/* Password */}
-      <div className="mb-2">
-        <label htmlFor="user_password" className="form-label text-white">
+      <div className="mb-2 fs-5">
+        <label htmlFor="user_password" className="form-label text-black">
           Password:
         </label>
         <input
@@ -196,10 +232,10 @@ const UserRegister = () => {
       </div>
 
       {/* Confirm Password */}
-      <div className="mb-3">
+      <div className="mb-3 fs-5">
         <label
           htmlFor="user_confirm_password"
-          className="form-label text-white"
+          className="form-label text-black"
         >
           Confirm Password:
         </label>
@@ -215,6 +251,7 @@ const UserRegister = () => {
           required
         />
       </div>
+     
 
       {/* Submit */}
       <div className="d-grid mb-2">
@@ -222,17 +259,30 @@ const UserRegister = () => {
           Register
         </button>
       </div>
-
-      {/* Redirect */}
-      {/* <p className="text-center text-white mb-0" style={{ fontSize: "14px" }}>
-        Already have an account?{" "}
-        <a href="login.html" className="link-light">
-          Login
-        </a>
-      </p> */}
+   
     </form>
+
+      </div>
+
+      {/* Right: Image */}
+      <div className="col-md-6 d-none d-md-block">
+        <img
+          src="https://thvnext.bing.com/th/id/OIP.kADFlcoRVwCn_K20bFQX-AHaE7?w=232&h=180&c=7&r=0&o=7&cb=ucfimgc2&dpr=1.5&pid=1.7&rm=3"
+          alt="Side Visual"
+          className="img-fluid"
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit: "cover"
+          }}
+        />
+      </div>
+    </div>
   </div>
 </section>
+
+  
+
 </div>
         
   )
