@@ -63,59 +63,10 @@ const handleSubmit = async (e) => {
   );
 };
 
-
-  //   toast.promise(
-  //     ApiService.post('/user/registration/', data,{
-  //       headers: {'Content-Type': 'multipart/form-data'}
-  //     }),
-  //     {
-  //       loading: 'Registering...',
-  //       success: () => {
-  //         navigate('/user-login');
-  //         return 'Registration successfully!';
-  //       },
-  //       error: (error) => {
-  //         let msg = "";
-  //         console.log(error);
-  //         if (error.response?.status === 400) {
-  //           if (error.response.data.user_email) {
-  //             msg = "Email Already Exist!";
-  //           }
-  //           if (error.response.data.user_mobile_no) {
-  //             msg = "Mobile No Already Exist!";
-  //           }
-  //           toast.error(msg || 'Invalid data provided.');
-  //         }
-  //       },
-  //     }
-  //   );
-  // }
-
-
   return (
     <div>
    
-      {/* <h1>User Registration</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="user_name">Name:</label>
-        <input type="text" name="user_name" value={formData.user_name} onChange={handleChange} required />
-
-        <label htmlFor="user_email">Email:</label>
-        <input type="email" name="user_email" value={formData.user_email} onChange={handleChange} required />
-
-        <label htmlFor="user_mobile_no">Mobile No:</label>
-        <input type="tel" name="user_mobile_no" value={formData.user_mobile_no} onChange={handleChange} required />
-
-        <label htmlFor="user_password">Password:</label>
-        <input type="password" name="user_password" value={formData.user_password} onChange={handleChange}
-        minLength={8} maxLength={30} required />
-
-        <label htmlFor="user_confirm_password">Confirm Password:</label>
-        <input type="password" name="user_confirm_password" value={formData.user_confirm_password} onChange={handleChange} minLength={8} maxLength={30} required />
-
-        <button type='submit'>Register</button>
-
-      </form> */}
+      
  
 <section
   className="d-flex justify-content-center align-items-center vh-100"
@@ -129,28 +80,15 @@ const handleSubmit = async (e) => {
     position: "relative"
   }}
 >
-  {/* Blurred Background Overlay */}
-  {/* <div
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.4)", // Dark overlay
-      backdropFilter: "blur(0px)", // ✅ Background blur
-      WebkitBackdropFilter: "blur(0px)",
-      zIndex: 1
-    }}
-  ></div> */}
+  
 
-  {/* Glass Effect Card with Image */}
+ 
   <div
     className="rounded-4 shadow-lg overflow-hidden"
     style={{
       width: "100%",
       maxWidth: "900px",
-      background: "rgba(6, 6, 6, 0.15)", // Transparent glass effect
+      background: "rgba(6, 6, 6, 0.15)", 
       backdropFilter: "blur(12px)",
       WebkitBackdropFilter: "blur(12px)",
       border: "4px solid rgba(9, 9, 9, 0.3)",
@@ -160,11 +98,11 @@ const handleSubmit = async (e) => {
     }}
   >
     <div className="row g-0" style={{ height: "100%" }}>
-      {/* Left: Registration Form */}
+      
       <div className="col-md-6 p-4 d-flex flex-column justify-content-center">
        <h1 className="text-center text-black mb-3">User Registration</h1>
     <form onSubmit={handleSubmit}>
-      {/* Full Name */}
+     
       <div className="mb-2 fs-5">
         <label htmlFor="user_name" className="form-label text-black">
           Name:
