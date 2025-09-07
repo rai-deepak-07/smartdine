@@ -135,8 +135,8 @@ const UserLogin = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "80%",        // Responsive width
-    maxWidth: "450px",   // Limit max size
+    width: "80%",       
+    maxWidth: "450px",   
     padding: "40px 30px",
   }}
 >
