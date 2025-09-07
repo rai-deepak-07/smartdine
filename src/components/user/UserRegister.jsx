@@ -63,57 +63,27 @@ const handleSubmit = async (e) => {
   );
 };
 
-
-  //   toast.promise(
-  //     ApiService.post('/user/registration/', data,{
-  //       headers: {'Content-Type': 'multipart/form-data'}
-  //     }),
-  //     {
-  //       loading: 'Registering...',
-  //       success: () => {
-  //         navigate('/user-login');
-  //         return 'Registration successfully!';
-  //       },
-  //       error: (error) => {
-  //         let msg = "";
-  //         console.log(error);
-  //         if (error.response?.status === 400) {
-  //           if (error.response.data.user_email) {
-  //             msg = "Email Already Exist!";
-  //           }
-  //           if (error.response.data.user_mobile_no) {
-  //             msg = "Mobile No Already Exist!";
-  //           }
-  //           toast.error(msg || 'Invalid data provided.');
-  //         }
-  //       },
-  //     }
-  //   );
-  // }
-
-
   return (
     <div>
       <h1>User Registration</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="user_name">Name:</label>
         <input type="text" name="user_name" value={formData.user_name} onChange={handleChange} required />
-
+        <br />
         <label htmlFor="user_email">Email:</label>
         <input type="email" name="user_email" value={formData.user_email} onChange={handleChange} required />
-
+        <br />
         <label htmlFor="user_mobile_no">Mobile No:</label>
         <input type="tel" name="user_mobile_no" value={formData.user_mobile_no} onChange={handleChange} required />
-
+        <br />
         <label htmlFor="user_password">Password:</label>
         <input type="password" name="user_password" value={formData.user_password} onChange={handleChange}
         minLength={8} maxLength={30} required />
-
+        <br />
         <label htmlFor="user_confirm_password">Confirm Password:</label>
         <input type="password" name="user_confirm_password" value={formData.user_confirm_password} onChange={handleChange} minLength={8} maxLength={30} required />
-
+        <br />
         <button type='submit'>Register</button>
-
       </form>
   
     </div>

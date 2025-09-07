@@ -59,21 +59,7 @@ const AppFeaturesSection = () => {
             <div className="col-lg-6">
                 <div className="row px-3 px-md-2">
                     <div className="col-12 position-relative">
-                        <span data-aos="zoom-in" data-aos-duration="2000"
-                            style={{
-                                position: 'absolute',
-                                top: '-65px',
-                                left: 5,
-                                fontSize: '6rem',
-                                color: 'rgba(40,40,40,0.06)',
-                                fontWeight: 700,
-                                zIndex: 1,
-                                letterSpacing: '10px',
-                                textTransform: 'uppercase',
-                                userSelect: 'none',
-                                pointerEvents: 'none',
-                                // fontFamily:' "Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
-                            }}>
+                        <span className='shadow_text' data-aos="zoom-in" data-aos-duration="2000">
                             About Us
                         </span>
                     </div>
@@ -91,7 +77,7 @@ const AppFeaturesSection = () => {
                 {/* Features: */}
                 <div className="row">
                     <div className="col-12">
-                        <div className='bg-light p-5'>
+                        <div className='bg-light py-3 px-1 p-md-5'>
                             {features.map((item) => (
                                 <div key={item.id} className="bg-white rounded-3 shadow-sm p-3 mb-3 d-flex align-items-center" data-aos="flip-down" data-aos-duration="2000">
                                     <i className={`bi bi-${item.icon} fs-3 text-${item.color} me-3`}></i>

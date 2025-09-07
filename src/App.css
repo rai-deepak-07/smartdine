@@ -79,7 +79,6 @@
 /* ================================================================================ */
 
 @-webkit-keyframes btnIconHover {
-
   0%,
   50%,
   100% {
@@ -133,4 +132,28 @@
   animation-duration: 0.75s;
   -webkit-animation-timing-function: ease-out;
   animation-timing-function: ease-out;
+}
+
+
+
+.shadow_text {
+  position: absolute;
+  top: -85px;
+  left: 7px;
+  font-size: 7rem;
+  color: rgba(40, 40, 40, 0.06);
+  font-weight: 700;
+  z-index: 1;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 425px) {
+  .shadow_text {
+    top: -60px;
+    left: 10px;
+    font-size: 3.5rem;
+  }
 }
