@@ -110,7 +110,7 @@ const UserLogin = () => {
           "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        position: "relative",
+        position: "absolute",
         top: 0,
         left: 0,
         width: "100%",
