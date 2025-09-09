@@ -33,6 +33,7 @@ import ParternsWithUs from "./components/restaurants/partners/ParternsWithUs";
 import Upi from "./components/UPI";
 import Aos from "aos";
 import { useEffect } from "react";
+import Home from "./components/restaurants/layout/Home";
 
 const App = () => {
 
@@ -74,8 +75,8 @@ const App = () => {
 
               <Route element={<RestaurantProtected />}>
                 <Route path="restaurant" element={<RestaurantLayout />}>
-                  <Route index element={<Dashboard />} />
-                  {/* ... other valid restaurant routes */}
+                  <Route path="home" element={<Home />} />
+                  <Route path="dashboard" element={<Dashboard />} />
                 </Route>
               </Route>
 

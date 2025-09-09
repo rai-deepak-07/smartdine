@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SmartDine",
+  "name": "SmartDine - Pre Table Reservation and Pre Order Plateform",
   "icons": [
     {
       "src": "favicon.ico",

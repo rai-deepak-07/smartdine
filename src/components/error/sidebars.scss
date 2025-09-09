@@ -1,0 +1,81 @@
+$Info:#17a2b8;
+$White: white;
+
+// Font Family
+$ff1: Palatino Linotype;
+$ff2: Cambria Math;
+$ff3: Consolas;
+$ff4: High Tower Text;
+$ff5: Calibri, sans-serif;
+
+
+/* =================== Layout Component CSS Start Here */
+
+#Sidebar{
+    height: 100vh;
+    width: inherit;
+    font-family: $ff2;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    padding: 14px;
+    background-color: white
+}
+
+#Sidebar ul{
+    flex-direction: column;
+}
+
+#Sidebar ul i, #sid ul i{
+    padding-right: 10px;
+}
+
+#Sidebar .nav-pills, #sid .nav-pills{
+    --bs-nav-pills-link-active-bg: rgba(23, 162, 184,1);
+}
+
+
+// @media only screen and (max-width: 575px) {
+//     #Sidebar{
+//         height:max-content;
+//         bottom: 0;
+//         position: fixed;
+//         width:100%;
+//         padding: 10px 10px 5px 10px;
+//         background-color: rgba($color: black, $alpha: 1.0);
+//     }
+    
+//     #Sidebar #Title, hr, ul span {
+//         display: none;
+//     }
+
+//     #Sidebar ul{
+//         flex-direction: row;
+//         justify-content: space-between;
+//     }
+    
+//     #Sidebar ul i{
+//         padding-right: 0px;
+//         justify-content: space-between;
+//     }
+    
+    
+//     #Sidebar .nav{
+//         --bs-nav-link-color: #17a2b8;
+//         --bs-nav-link-hover-color: #17a2b8;   
+//     }
+    
+//     #Sidebar .nav-item{
+//         align-self: center;
+//     }
+//     #Sidebar .nav-link{
+//         font-size:large;
+//         // padding-b: 0px;
+//     }
+    
+//     #Sidebar .nav-link.active{
+//         font-size: x-large;
+//         font-weight: bolder;
+//     }
+    
+// }

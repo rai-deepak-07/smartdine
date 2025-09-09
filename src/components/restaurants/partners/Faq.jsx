@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 const Faq = () => {
-  
+
   const accordian = [
     {
       "id": "1",
@@ -31,12 +33,19 @@ const Faq = () => {
       "question": "How does SmartDine improve kitchen efficiency? ",
       "answer": "SmartDine significantly improves kitchen efficiency by giving chefs and staff advance visibility into incoming orders. With pre-orders and real-time order tracking, the kitchen can prepare dishes in the right sequence and manage resources better. This reduces last-minute rushes and minimizes errors in food preparation. Moreover, it allows restaurants to serve more customers within the same timeframe, which directly translates to increased sales and higher customer satisfaction.",
     },
-
-
   ];
+
+  // State to track open item (only one at a time)
+  const [openId, setOpenId] = useState(accordian?.id || null);
+
+  const handleToggle = (id) => {
+    setOpenId(openId === id ? null : id);
+  };
+
+
   return (
     <div>
-      <section className="faq py-5">
+      {/* <section className="faq py-5">
         <div className="container">
           <h2 className="text-center mb-4">Frequently Asked Questions</h2>
           <div className="accordion" id="faqAccordion">
@@ -63,6 +72,61 @@ const Faq = () => {
                     {List.answer}
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      <section className="faq py-5">
+        <div className="container">
+          <h2 className="text-center mb-4">Frequently asked questions</h2>
+
+          <div className="px-md-4 px-3">
+            {accordian.map((item) => (
+              <div key={item.id} style={{ borderBottom: "1px solid #efefef" }}>
+                <button
+                  onClick={() => handleToggle(item.id)}
+                  style={{
+                    width: "100%",
+                    background: "none",
+                    border: "none",
+                    outline: "none",
+                    textAlign: "left",
+                    fontWeight: 600,
+                    fontSize: "1.08rem",
+                    padding: "22px 0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    cursor: "pointer"
+                  }}
+                  aria-expanded={openId === item.id}
+                  aria-controls={`faq${item.id}`}
+                >
+                  <span>{item.question}</span>
+                  <span style={{
+                    fontSize: "1.75rem",
+                    fontWeight: 400,
+                    transition: "transform 1s",
+                    userSelect: "none"
+                  }}>
+                    {openId === item.id ? "−" : "+"}
+                  </span>
+                </button>
+                {openId === item.id && (
+                  <div
+                    id={`faq${item.id}`}
+                    className=""
+                    style={{
+                      padding: "0 0 22px 0",
+                      color: "#616161",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    {item.answer}
+                  </div>
+                )}
               </div>
             ))}
           </div>

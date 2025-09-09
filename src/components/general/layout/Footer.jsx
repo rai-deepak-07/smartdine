@@ -28,18 +28,18 @@ const Footer = () => {
           {/* Product Links */}
           <div className="col-6 col-md-2 mb-4 mb-md-0">
             <h6 className="fw-bold mb-2 d-block text-uppercase">For Restaurants</h6>
-            <ul class="nav flex-column small">
-              <li class="nav-item mb-2">
-                <Link to="/partner-with-us" class="nav-link p-0 text-body-secondary">Partner With Us</Link >
+            <ul className="nav flex-column small">
+              <li className="nav-item mb-2">
+                <Link to="/partner-with-us" className="nav-link p-0 text-body-secondary">Partner With Us</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="/restaurant-login" class="nav-link p-0 text-body-secondary">LogIn</Link >
+              <li className="nav-item mb-2">
+                <Link to="/restaurant-login" className="nav-link p-0 text-body-secondary">LogIn</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="/restaurant-register" class="nav-link p-0 text-body-secondary">SignIn</Link >
+              <li className="nav-item mb-2">
+                <Link to="/restaurant-register" className="nav-link p-0 text-body-secondary">SignIn</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">FAQs</Link >
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">FAQs</Link >
               </li>
             </ul>
           </div>
@@ -47,40 +47,40 @@ const Footer = () => {
           {/* Product Links */}
           <div className="col-6 col-md-2 mb-4 mb-md-0">
             <h6 className="fw-bold mb-2 d-block text-uppercase">For Restaurants</h6>
-            <ul class="nav flex-column small">
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Home</Link >
+            <ul className="nav flex-column small">
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">Home</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Features</Link>
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">Features</Link>
               </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">Pricing</Link >
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">Pricing</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">FAQs</Link >
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">FAQs</Link >
               </li>
-              <li class="nav-item mb-2">
-                <Link to="#" class="nav-link p-0 text-body-secondary">About</Link >
+              <li className="nav-item mb-2">
+                <Link to="#" className="nav-link p-0 text-body-secondary">About</Link >
               </li>
             </ul>
           </div>
 
 
-          <div class="col-md-4 mb-3 my-md-0 my-3">
+          <div className="col-md-4 mb-3 my-md-0 my-3">
             <form>
               <h5 className="fw-bold mb-2">Subscribe to our newsletter</h5>
               <p>Monthly digest of what's new and exciting from us.</p>
-              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <div className="d-flex flex-column flex-sm-row w-100 gap-2">
                 <label htmlFor="newsletter1" className="visually-hidden"
                 >Email address</label>
                 <input
                   id="newsletter1"
                   type="email"
-                  className="form-control form-control-sm"
+                  className="form-control"
                   placeholder="Email address"
                 />
-                <button class="btn btn-dark rounded-0">Subscribe</button>
+                <button className="btn btn-dark rounded-0">Subscribe</button>
               </div>
             </form>
           </div>

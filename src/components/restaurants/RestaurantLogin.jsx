@@ -55,7 +55,7 @@ const RestaurantLogin = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/restaurant");
+      navigate("/restaurant/home");
     }
   }, [isLoggedIn, navigate]);
 
