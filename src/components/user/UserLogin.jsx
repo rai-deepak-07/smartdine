@@ -116,7 +116,7 @@ const UserLogin = () => {
                   </div>
 
                   <div className='d-grid justify-content-end'>
-                    <Link to="/" className='text-decoration-none fw-semibold cl5'>Forget Password?</Link>
+                    <Link to="/forget-password" className='text-decoration-none fw-semibold cl5'>Forget Password?</Link>
                   </div>
 
                   <button type="submit" className="btn btn-danger w-100 mt-3">

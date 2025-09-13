@@ -3,8 +3,8 @@ import React from 'react'
 const Orders = () => {
   return (
     <div>
-      <h1>Orders</h1>
-      <p>View and manage your restaurant orders here.</p>
+      <h1>All Order</h1>
+      <p>View your restaurant orders here.</p>
     </div>
   )
 }

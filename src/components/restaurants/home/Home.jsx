@@ -32,7 +32,7 @@ const CardField = ({ icon, label, value, link }) => (
 );
 
 const Home = () => (
-    <div className="container mt-4">
+    <div className="container-fluid p-0 pt-3">
         <div className="row">
             <div className="col-md-6">
                 {/* Owner Card */}
@@ -87,14 +87,8 @@ const Home = () => (
                 </div>
 
             </div>
-
-        </div>
-
-
-
+        </div>   
     </div>
 );
 
 export default Home;
-
-// const { restaurantData } = useContext(ResturantContext);
