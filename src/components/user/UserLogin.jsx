@@ -56,6 +56,7 @@ const UserLogin = () => {
   };
 
   useEffect(() => {
+    document.title = "User Login | SmartDine";
     if (isLoggedIn) {
       navigate('/user');
     }
@@ -73,7 +74,7 @@ const UserLogin = () => {
             {/* User Login Page */}
             <div className="col-md-6 p-md-5 px-4 py-5 shadow rounded smartdine-overlay position-relative">
               <div className="row cl5 mb-3">
-                <span className="fs-2 fw-semibold f5">
+                <span className="fs-3 fw-semibold f2">
                   <i className="bi bi-person-circle me-3"></i>
                   User Login
                 </span>
@@ -85,7 +86,7 @@ const UserLogin = () => {
                 <form onSubmit={handleLogin}>
                   {/* Email */}
                   <div className="my-3 input-group">
-                    <span className="input-group-text fs-5 text-muted">
+                    <span className="input-group-text text-muted">
                       <i className="bi bi-envelope"></i>
                     </span>
                     <input
@@ -101,7 +102,7 @@ const UserLogin = () => {
 
                   {/* Password */}
                   <div className="my-3 input-group">
-                    <span className="input-group-text fs-5 text-muted">
+                    <span className="input-group-text text-muted">
                       <i className="bi bi-lock"></i>
                     </span>
                     <input
@@ -134,18 +135,18 @@ const UserLogin = () => {
                   {/* Social Login  */}
                   <div className='d-flex justify-content-between'>
                     <Link to="#" className="btn btn-outline-light w-50 mx-2">
-                      <i className="bi bi-facebook fs-5"></i>
+                      <i className="bi bi-facebook"></i>
                     </Link >
                     <Link to="#" className="btn btn-outline-light w-50 mx-2">
-                      <i className="bi bi-google fs-5"></i>
+                      <i className="bi bi-google"></i>
                     </Link >
                     <Link to="#" className="btn btn-outline-light w-50 mx-2">
-                      <i className="bi bi-twitter fs-5"></i>
+                      <i className="bi bi-twitter"></i>
                     </Link >
                   </div>
 
                   {/* <hr className='border-light mt-5' /> */}
-                  <div className="d-grid justify-content-center mt-5">
+                  <div className="d-grid justify-content-center f2 mt-5">
                     <span className='cl5'>
                       Don't have an account?
                       <Link to="/user-register" className='text-decoration-none mx-2 fw-semibold cl1'>

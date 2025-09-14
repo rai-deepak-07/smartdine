@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
 // External CSS import
-import './index.css';
-import './css/myStyle.scss';
+// import './index.scss';
+// import './css/myStyle.scss';
+// import './css/myStyle.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'

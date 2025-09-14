@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { ResturantContext } from "../../../context/Context";
-
 const restaurantData = {
     city: "Kanpur",
     email: "raikwardeepak310@gmail.com",

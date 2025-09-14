@@ -1,20 +1,23 @@
+@import './index.scss'; 
+
 .my_link {
-  color: white;
+  color: $color4;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  font-family: $ff2;
   transform: perspective(1px) translateZ(0);
 }
 
 .my_link:hover {
-  color: orange;
+  color: $color2;
   font-weight: 400;
   transition: color 0.5s ease-in-out;
 }
 
 .active {
-  color: orange;
-  font-weight: 600;
+  color: $color2;
+  font-weight: 500;
 }
 
 .my_link:before {
@@ -23,9 +26,9 @@
   z-index: -1;
   left: 0;
   right: 100%;
-  bottom: 0;
-  background: orange;
-  height: 1px;
+  bottom: -20%;
+  background: $color2;
+  height: 2px;
   -webkit-transition-property: right;
   transition-property: right;
   -webkit-transition-duration: 0.3s;

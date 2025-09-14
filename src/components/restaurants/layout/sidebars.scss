@@ -1,13 +1,4 @@
-$Info:#17a2b8;
-$White: white;
-
-// Font Family
-$ff1: Palatino Linotype;
-$ff2: Cambria Math;
-$ff3: Consolas;
-$ff4: High Tower Text;
-$ff5: Calibri, sans-serif;
-
+@import '../../../css/myStyle.scss';
 
 /* =================== Layout Component CSS Start Here */
 
@@ -19,8 +10,8 @@ $ff5: Calibri, sans-serif;
     flex-direction: column;
     position: fixed;
     padding: 14px;
-    background-color: white
-}
+    background-color: $color4;
+}   
 
 #Sidebar ul{
     flex-direction: column;
@@ -31,7 +22,7 @@ $ff5: Calibri, sans-serif;
 }
 
 #Sidebar .nav-pills, #sid .nav-pills{
-    --bs-nav-pills-link-active-bg: rgba(23, 162, 184,1);
+    --bs-nav-pills-link-active-bg: rgb(88, 7, 57);
 }
 
 

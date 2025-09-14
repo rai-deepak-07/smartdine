@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
+import './App.scss';
 
 import RestaurantState from "./context/RestaurantState";
 import UserState from "./context/UserState";
@@ -19,6 +19,8 @@ import RestaurantLogin from "./components/restaurants/RestaurantLogin";
 import RestaurantRegister from "./components/restaurants/RestaurantRegister";
 import UserDashboard from "./components/user/layout/UserDashboard";
 import LoadingBar from 'react-top-loading-bar'
+import Top from './components/master/Top'
+
 import { Toaster } from "react-hot-toast";
 
 import { useContext } from "react";
@@ -26,6 +28,8 @@ import { MyStateContext } from "./context/Context";
 import Main from "./components/general/Main";
 import UserProtected from "./components/user/UserProtected";
 
+import ForgetPassword from "./components/master/ForgetPassword";
+import ResetPassword from "./components/master/ResetPassword";
 import OtpVerification from "./components/master/OtpVerification";
 import ParternsWithUs from "./components/restaurants/partners/ParternsWithUs";
 import Upi from "./components/UPI";
@@ -40,8 +44,7 @@ import OrdersList from "./components/restaurants/orders/OrdersList";
 import Menu from "./components/restaurants/menu/Menu";
 import Tables from "./components/restaurants/tables/Tables";
 import Staff from "./components/restaurants/staff/Staff";
-import ResetPassword from "./components/master/ResetPassword";
-import ForgetPassword from "./components/master/ForgetPassword";
+
 
 const App = () => {
 
@@ -53,7 +56,8 @@ const App = () => {
   return (
 
     <BrowserRouter basename="/smartdine">
-
+      
+      <Top/>
       <LoadingBar color='#E2293F' height="3px" loaderSpeed="1000" shadow={true} progress={progress} />
       <Toaster position="top-center" reverseOrder={false} />
 

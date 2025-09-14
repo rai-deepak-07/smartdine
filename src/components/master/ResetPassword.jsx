@@ -5,6 +5,7 @@ import { MyStateContext } from '../../context/Context';
 import ApiService from '../../apiservice/ApiService';
 
 const ResetPassword = () => {
+  document.title = "New Password | SmartDine";
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const token = searchParams.get('token');

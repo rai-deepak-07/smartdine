@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import ApiService from '../../apiservice/ApiService';
 import emailjs from "emailjs-com";
 import { Link } from 'react-router-dom'
 import bgImg from '../../assets/image/user/kitchen-6878026.jpg'
@@ -9,8 +8,13 @@ import bgImg from '../../assets/image/user/kitchen-6878026.jpg'
 
 const UserRegister = () => {
 
+  document.title = "User Register | SmartDine";
+  
   const navigate = useNavigate();
 
+  const icon = 'input-group-text text-muted';
+
+  // Form Fields
   const [formData, setFormData] = useState({
     user_name: '',
     user_email: '',
@@ -24,6 +28,7 @@ const UserRegister = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Validate Password and Confirm Password
   const validateBeforeSubmit = () => {
     if (formData.user_password !== formData.user_confirm_password) {
       toast.error('Passwords do not match.');
@@ -32,6 +37,7 @@ const UserRegister = () => {
     return true;
   };
 
+  // Button Submit Handle
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -65,8 +71,10 @@ const UserRegister = () => {
     );
   };
 
+
   return (
     <div className="smartdine-banner" style={{ backgroundImage: `url(${bgImg})` }} id="userregister">
+
       {/* Overlay */}
       <div className="smartdine-overlay opacity-75"></div>
       <div className="position-relative z-1 w-100">
@@ -78,7 +86,7 @@ const UserRegister = () => {
             <div className="col-md-6 p-md-5 px-4 py-5 shadow rounded smartdine-overlay position-relative">
 
               <div className="row cl5 mb-3">
-                <span className="fs-2 fw-semibold f5">
+                <span className="fs-3 fw-semibold f2">
                   <i className="bi bi-person-plus me-3"></i>
                   User Registration
                 </span>
@@ -87,10 +95,10 @@ const UserRegister = () => {
 
               <hr className="border-light border-1" />
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className='f5'>
                 {/* Name */}
                 <div className="my-3 input-group">
-                  <span className="input-group-text fs-5 text-muted">
+                  <span className={icon}>
                     <i className="bi bi-person"></i>
                   </span>
                   <input
@@ -106,7 +114,7 @@ const UserRegister = () => {
 
                 {/* Email */}
                 <div className="my-3 input-group">
-                  <span className="input-group-text fs-5 text-muted">
+                  <span className={icon}>
                     <i className="bi bi-envelope"></i>
                   </span>
                   <input
@@ -122,7 +130,7 @@ const UserRegister = () => {
 
                 {/* Mobile No */}
                 <div className="my-3 input-group">
-                  <span className="input-group-text fs-5 text-muted">
+                  <span className={icon}>
                     <i className="bi bi-telephone"></i>
                   </span>
                   <input
@@ -139,7 +147,7 @@ const UserRegister = () => {
 
                 {/* Password */}
                 <div className="my-3 input-group">
-                  <span className="input-group-text fs-5 text-muted">
+                  <span className={icon}>
                     <i className="bi bi-lock"></i>
                   </span>
                   <input
@@ -157,7 +165,7 @@ const UserRegister = () => {
 
                 {/* Confirm Password */}
                 <div className="my-3 input-group">
-                  <span className="input-group-text fs-5 text-muted">
+                  <span className={icon}>
                     <i className="bi bi-lock-fill"></i>
                   </span>
                   <input

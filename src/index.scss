@@ -1,0 +1,56 @@
+$navBgColor: rgba(0, 0, 0, 0.0);
+$navBgScrollColor: rgba(0, 0, 0, 0.9);
+
+// $color: rgb(255, 180, 40, 1);
+// $color: #E2293F;
+// $color1: #41C485;
+// $color2: #eec02a;
+// $color3: #1D1C1C;
+// $color4: white;
+// $color5:#17a2b8;
+
+$color: #CB0404;
+$color1: #F4631E;
+$color2: #FF9F00;
+$color3: #1D1C1C;
+$color4: white;
+$color5: #309898;
+
+
+// WHEN TEXT SELECTED
+::selection {
+  color: $color;
+  background-color: rgba($color: $color, $alpha: 0.1);
+}
+
+// Different color classes
+.cl1 { color: $color; }
+.cl2 { color: $color1; }
+.cl3 { color: $color2; }
+.cl4 { color: $color3; }
+.cl5 { color: $color4; }
+.cl6 { color: $color5; }
+
+// Different Background color classes
+.clb1 { background-color: $color; }
+.clb2 { background-color: $color1; }
+.clb3 { background-color: $color2; }
+.clb4 { background-color: $color3; }
+.clb5 { background-color: $color4; }
+.clb6 { background-color: $color5; }
+
+// Font Family
+$ff1: Palatino Linotype;
+$ff2: Cambria Math;
+$ff3: Consolas;
+$ff4: High Tower Text;
+$ff5: Calibri, sans-serif;
+$ff6: Georgia, 'Times New Roman', Times, serif;
+
+//Different font style classes
+.f1 { font-family: $ff1; }
+.f2 { font-family: $ff2; }
+.f3 { font-family: $ff3; }
+.f4 { font-family: $ff4; }
+.f5 { font-family: $ff5; }
+.f6 { font-family: $ff6; }

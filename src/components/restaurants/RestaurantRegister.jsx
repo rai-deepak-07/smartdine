@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ApiService from '../../apiservice/ApiService';
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
 import emailjs from "emailjs-com";
 
-import { MainContext, ResturantContext } from '../../context/Context';
+import { MainContext } from '../../context/Context';
 
 const RestaurantRegister = () => {
+  document.title = "Restaurant Register | SmartDine";
+
 
   const [formFields, setFormFields] = useState({
     res_name: '',
@@ -27,7 +28,7 @@ const RestaurantRegister = () => {
   });
 
   const { locations, getLocations } = useContext(MainContext);
-  const { sendWelcomeEmail } = useContext(ResturantContext);
+  // const { sendWelcomeEmail } = useContext(ResturantContext);
   const [cities, setCities] = useState([]);
 
   // Files
@@ -214,7 +215,7 @@ const handleSubmit = async (e) => {
 
   useEffect(() => {
     getLocations();
-  }, []);
+  }, [getLocations]);
 
   return (
 

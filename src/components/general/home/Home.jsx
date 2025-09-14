@@ -1,6 +1,8 @@
 import bgImg from '../../../assets/image/general/pizza-8968566.png'
 
 const Home = () => {
+    document.title = "SmartDine 🍽️";
+  
     return (
     <div className='smartdine-banner' style={{backgroundImage: `url(${bgImg})`}} id='home_main'>
       <div className="smartdine-overlay"></div>

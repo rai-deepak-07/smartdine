@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import ApiService from '../../apiservice/ApiService';
 
 const ForgetPassword = () => {
+  document.title = "Forget Password | SmartDine";
   const [email, setEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
 
