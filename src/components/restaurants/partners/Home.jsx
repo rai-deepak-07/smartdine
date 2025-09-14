@@ -57,9 +57,9 @@ const SmartdinePartner = () => {
                       </p>
                       <p className="small mb-2 ms-4">
                         Don't have a FSSAI license?{' '}
-                        <a href="#" className="text-decoration-none">
+                        <Link to="/" className="text-decoration-none">
                           Apply here
-                        </a>
+                        </Link>
                       </p>
                     </div>
                     <div className="col-md-6">

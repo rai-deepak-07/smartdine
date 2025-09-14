@@ -3,6 +3,10 @@ import ApiService from '../../apiservice/ApiService';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/Context';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom'
+import bgImg from '../../assets/image/user/kitchen-6878026.jpg'
+// import bgImg from '../../assets/image/user/restaurant-1090136.jpg'
+// import bgImg from '../../assets/image/user/outdoor-dining-1846137.jpg'
 
 const UserLogin = () => {
   const navigate = useNavigate();
@@ -52,158 +56,115 @@ const UserLogin = () => {
   };
 
   useEffect(() => {
+    document.title = "User Login | SmartDine";
     if (isLoggedIn) {
       navigate('/user');
     }
   }, [isLoggedIn, navigate]);
 
   return (
-    <div>
-      {/* <h2>User Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="user_email"
-          maxLength={100}
-          value={formFields.user_email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="user_password"
-          minLength={8}
-          maxLength={128}
-          value={formFields.user_password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Login</button>
-      </form> */}
-  
 
-<div
-  className="d-flex align-items-center justify-content-center"
-  style={{
-    minHeight: "100vh",
-    backgroundColor: "#f8f9fa", // plain background
-    padding: "20px",
-  }}
->
-  {/* Login Card */}
-  <div
-    className="card-body p-5 text-center text-white"
-    style={{
-      width: "100%",
-      maxWidth: "600px" ,
-      minHeight: "650px",
-      borderRadius: "15px",
-      position: "relative",
-    }}
-  >
-    {/* Background Image inside the card */}
-    <div
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-       filter: "brightness(0.9)", // no blur
-       borderRadius: "20px",
-       border: "2px solid rgba(255,255,255,0.6)",
+    <div className='smartdine-banner' style={{ backgroundImage: `url(${bgImg})` }} id='userlogin'>
+      <div className="smartdine-overlay opacity-75"></div>
+      <div className="position-relative z-1 w-100">
+        <div className="container px-3">
+          <div className="row">
+            <div className="col-md-3"></div>
 
-        zIndex: 0,
-      }}
-    ></div>
+            {/* User Login Page */}
+            <div className="col-md-6 p-md-5 px-4 py-5 shadow rounded smartdine-overlay position-relative">
+              <div className="row cl5 mb-3">
+                <span className="fs-3 fw-semibold f2">
+                  <i className="bi bi-person-circle me-3"></i>
+                  User Login
+                </span>
+              </div>
 
-    {/* Glass Layer with Centered Form */}
-<div
-  className="d-flex flex-column justify-content-center align-items-center text-center text-white"
-  style={{
-    backgroundColor: "rgba(255, 255, 255, 0.25)",
-    backdropFilter: "blur(10px)",
-    borderRadius: "20px",
-    zIndex: 1,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "80%",       
-    maxWidth: "450px",   
-    padding: "40px 30px",
-  }}
->
-  <h3 className="mb-4 fw-bold">User Login</h3>
+              <hr className='border-light border-1' />
 
-  <form
-    onSubmit={handleLogin}
-    style={{ width: "100%" }}
-  >
-    <div className="mb-3 input-group">
-      <span className="input-group-text bg-light">
-        <i className="bi bi-envelope"></i>
-      </span>
-      <input
-        type="email"
-        name="user_email"
-        value={formFields.user_email}
-        onChange={handleChange}
-        className="form-control form-control-lg"
-        placeholder="Email Address"
-        style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
-        required
-      />
+              <div className="row">
+                <form onSubmit={handleLogin}>
+                  {/* Email */}
+                  <div className="my-3 input-group">
+                    <span className="input-group-text text-muted">
+                      <i className="bi bi-envelope"></i>
+                    </span>
+                    <input
+                      type="email"
+                      name="user_email"
+                      value={formFields.user_email}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="Email Address"
+                      required
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div className="my-3 input-group">
+                    <span className="input-group-text text-muted">
+                      <i className="bi bi-lock"></i>
+                    </span>
+                    <input
+                      type="password"
+                      name="user_password"
+                      value={formFields.user_password}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+
+                  <div className='d-grid justify-content-end'>
+                    <Link to="/forget-password" className='text-decoration-none fw-semibold cl5'>Forget Password?</Link>
+                  </div>
+
+                  <button type="submit" className="btn btn-danger w-100 mt-3">
+                    <i className='bi bi-box-arrow-in-right me-2'></i>Login
+                  </button>
+
+                  <div className="d-flex align-items-center my-4 cl5">
+                    <hr className="flex-grow-1" />
+                    <span className="px-2">
+                      or continue with
+                    </span>
+                    <hr className="flex-grow-1" />
+                  </div>
+
+                  {/* Social Login  */}
+                  <div className='d-flex justify-content-between'>
+                    <Link to="#" className="btn btn-outline-light w-50 mx-2">
+                      <i className="bi bi-facebook"></i>
+                    </Link >
+                    <Link to="#" className="btn btn-outline-light w-50 mx-2">
+                      <i className="bi bi-google"></i>
+                    </Link >
+                    <Link to="#" className="btn btn-outline-light w-50 mx-2">
+                      <i className="bi bi-twitter"></i>
+                    </Link >
+                  </div>
+
+                  {/* <hr className='border-light mt-5' /> */}
+                  <div className="d-grid justify-content-center f2 mt-5">
+                    <span className='cl5'>
+                      Don't have an account?
+                      <Link to="/user-register" className='text-decoration-none mx-2 fw-semibold cl1'>
+                        Register
+                      </Link>
+                    </span>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            <div className="col-md-3"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div className="mb-3 input-group">
-      <span className="input-group-text bg-light">
-        <i className="bi bi-lock"></i>
-      </span>
-      <input
-        type="password"
-        name="user_password"
-        value={formFields.user_password}
-        onChange={handleChange}
-        className="form-control form-control-lg"
-        placeholder="Password"
-        style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
-        required
-      />
-    </div>
-    <button
-      type="submit"
-      className="btn btn-danger w-100 mb-3 fw-bold"
-    >
-      LOGIN
-    </button>
-    <p>Or login with</p>
-    <div>
-      <a href="#" className="btn btn-outline-primary btn-sm me-2">
-        <i className="bi bi-facebook"></i>
-      </a>
-      <a href="#" className="btn btn-outline-danger btn-sm me-2">
-        <i className="bi bi-google"></i>
-      </a>
-      <a href="#" className="btn btn-outline-info btn-sm">
-        <i className="bi bi-twitter"></i>
-      </a>
-    </div>
-  </form>
-</div>
-
-  </div>
-</div>
-</div>
 
   );
 };
 
 export default UserLogin;
-
-

@@ -14,8 +14,6 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    const navbar = document.getElementById('general-navbar');
-    location.pathname!=='/'? navbar.classList.add('navbar-scrolled'):navbar.classList.remove('navbar-scrolled');
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -23,42 +21,46 @@ const Header = () => {
 
   return (
     <header className='fixed-top'>
-      <nav className={`navbar navbar-dark navbar-expand-lg ${scrolled? "navbar-scrolled" : ""}`} id='general-navbar'>
+      <nav className={`navbar navbar-dark navbar-expand-lg py-0 ${location.pathname === '/otp-verification'? "navbar-scrolled2" : scrolled ? "navbar-scrolled" : ""}`} id='general-navbar'>
         <div className="container">
 
           {/* Logo */}
           <Link className="navbar-brand" to="/">
-            <img src={logo} className='img-fluid'  alt="Logo" style={{ maxWidth: '100px', height: 'auto' }}/>
+            <img src={logo} className='img-fluid' alt="Logo" style={{ maxWidth: '100px', height: 'auto' }} />
           </Link>
 
           {/* Sidebar Toggler */}
-          <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+          <button className="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span className="bi bi-list-nested"></span>
           </button>
 
           {/* Sidebar Offcanvas */}
-          <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"
-            style={{ background: "rgba(0,0,0,0.9)" }}>
-            <div className="offcanvas-header px-4 justify-content-between">
+          <div className="offcanvas offcanvas-start w-75" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style={{ background: "rgba(0,0,0,0.9)" }}>
+
+            {/* Header */}
+            <div className="offcanvas-header px-4 justify-content-center">
               <Link to="/">
-                <img src={logo} className='img img-fluid' alt="Logo" style={{ maxWidth: '150px', height: 'auto' }}/>
+                <img src={logo} className='img img-fluid' alt="Logo" style={{ maxWidth: '150px', height: 'auto' }} />
               </Link>
-              <button type="button" className="btn btn-outline-danger btn bi bi-x-lg" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              {/* <button type="button" className="btn btn-outline-danger btn bi bi-x-lg" data-bs-dismiss="offcanvas" aria-label="Close"></button> */}
             </div>
 
-            <div className="offcanvas-body px-lg-0 px-5">
-              <ul className="navbar-nav fs-5 ms-auto">
+            {/* Body */}
+            <div className="offcanvas-body px-3">
+              <ul className="navbar-nav fs-6 ms-auto">
                 {NavList.map(list => (
-                  <li key={list.id} className="nav-item pb-lg-0 pb-3 px-3" data-bs-dismiss="offcanvas"> 
-                    <Link className="my_link" to={list.to}>
+                  <li key={list.id} className="nav-item pb-lg-0 pb-3 px-3" data-bs-dismiss="offcanvas">
+                    <Link className={`my_link ${(location.pathname === list.to) ? 'active' : ''}`} to={list.to}>
                       <i className={`bi bi-${list.icon} pe-2`}></i> {list.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
           </div>
+          
         </div>
       </nav>
     </header>

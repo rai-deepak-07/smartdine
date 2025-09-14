@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const RestaurantLogin = () => {
+  document.title = "Restaurant Login | SmartDine";
   const navigate = useNavigate();
   const { isLoggedIn, login } = useContext(ResturantContext); // Destructure login from context
 
@@ -55,7 +56,7 @@ const RestaurantLogin = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/restaurant");
+      navigate("/restaurant/home");
     }
   }, [isLoggedIn, navigate]);
 
@@ -103,7 +104,7 @@ const RestaurantLogin = () => {
                       />
 
                       <div className="text-end mb-4">
-                        <Link to="/" className="text-decoration-none fw-semibold cl4">
+                        <Link to="/forget-password" className="text-decoration-none fw-semibold cl4">
                           Forgot Password?
                         </Link>
                       </div>

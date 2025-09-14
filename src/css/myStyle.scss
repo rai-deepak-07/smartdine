@@ -1,77 +1,4 @@
-$navBgColor: rgba(0, 0, 0, 0.0);
-$navBgScrollColor: rgba(0, 0, 0, 1);
-// $color: rgb(255, 180, 40, 1);
-$color: #E2293F;
-$color1: #41C485;
-$color2: #F3B404;
-$color3: #1D1C1C;
-$color4: white;
-
-// WHEN TEXT SELECTED
-::selection {
-  color: $color;
-  background-color: rgba($color: $color, $alpha: 0.1);
-}
-
-// Different color classes
-.cl1 {
-  color: $color;
-}
-
-.cl2 {
-  color: $color1;
-}
-
-.cl3 {
-  color: $color2;
-}
-
-.cl4 {
-  color: $color3;
-}
-
-.cl5 {
-  color: $color4;
-}
-
-// Different Background color classes
-.clb1 {
-  background-color: $color;
-}
-
-.clb2 {
-  background-color: $color1;
-}
-
-.clb3 {
-  background-color: $color2;
-}
-
-.clb4 {
-  background-color: $color3;
-}
-
-$font1: Georgia, 'Times New Roman', Times, serif;
-
-//Different font style classes
-.f1 {
-  font-family: $font1;
-}
-
-.f2 {
-  font-family: 'Georgia', serif;
-}
-
-.f3 {
-  font-family: 'Courier New', monospace;
-}
-
-.f4 {
-  font-family: 'Tahoma', sans-serif;
-}
-
-
-
+@import '../index.scss';
 
 // General Panel CSS Start Here
 
@@ -81,12 +8,10 @@ $font1: Georgia, 'Times New Roman', Times, serif;
   background: $navBgScrollColor;
 }
 
-// $bg_image :'../assets/image/general/food-366875.jpg';
-// $bg_image :'../assets/image/general/food.jpg';
-$bg_image :'../assets/image/general/pizza-8968566.png';
+// $bg_image :'../assets/image/general/pizza-8968566.png';
 
 .smartdine-banner {
-  background-image: url($bg_image);
+  // background-image: url($bg_image);
   position: relative;
   width: 100%;
   height: 100vh;
@@ -116,7 +41,7 @@ $bg_image :'../assets/image/general/pizza-8968566.png';
 
 .title {
   font-size: 5rem;
-  font-family: $font1;
+  font-family: $ff6;
   font-weight: bold;
   font-style: italic;
   margin-bottom: 1rem;
@@ -124,7 +49,7 @@ $bg_image :'../assets/image/general/pizza-8968566.png';
 
 .sub-title {
   font-size: 2.5rem;
-  font-family: $font1;
+  font-family: $ff6;
   font-weight: normal;
   margin-bottom: 1rem;
 
@@ -166,3 +91,9 @@ $bg_image :'../assets/image/general/pizza-8968566.png';
 
 
 // General Panel CSS End Here
+
+.myicon{
+  i{
+    color: $color3;
+  }
+}
