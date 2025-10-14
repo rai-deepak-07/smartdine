@@ -9,3 +9,4 @@ const TableBooking = () => {
 }
 
 export default TableBooking
+
