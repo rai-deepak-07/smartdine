@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { UserContext } from '../../../context/Context'
 import { useContext } from 'react';
+import Header from './Header';
 
 const UserLayout = () => {
   const { logout } = useContext(UserContext);
@@ -23,6 +24,7 @@ const UserLayout = () => {
   // }
   return (
     <>
+      <Header/>
       <div>
         <h2>User Layout</h2>
         {/* <h2>{userData}</h2> */}
