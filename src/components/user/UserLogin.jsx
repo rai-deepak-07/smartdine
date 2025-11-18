@@ -63,7 +63,7 @@ const UserLogin = () => {
   }, [isLoggedIn, navigate]);
 
   return (
-
+    
     <div className='smartdine-banner' style={{ backgroundImage: `url(${bgImg})` }} id='userlogin'>
       <div className="smartdine-overlay opacity-75"></div>
       <div className="position-relative z-1 w-100">
