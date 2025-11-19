@@ -23,6 +23,7 @@ const UserLayout = () => {
   // }
   return (
     <>
+      <Header/>
       <div>
         
         <Header />

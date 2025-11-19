@@ -51,7 +51,8 @@ const UserState = (props) => {
   // Location Handler: Get Current Location
   const getLocation = useCallback((position) => {
     const location_url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${locAPI}`;
-
+    console.log(location_url);
+    
     axios.get(location_url).then(response => {
       const components = response.data.results[0].address_components;
       const city = components.find(c => c.types.includes("administrative_area_level_2"));
