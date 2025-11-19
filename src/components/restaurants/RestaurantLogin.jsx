@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ResturantContext } from "../../context/Context";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import bgImg from '../../assets/image/user/kitchen-6878026.jpg';
 
 const RestaurantLogin = () => {
   document.title = "Restaurant Login | SmartDine";
@@ -61,28 +62,38 @@ const RestaurantLogin = () => {
   }, [isLoggedIn, navigate]);
 
   return (
-    <div className=" min-vh-100 d-flex align-items-center">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-8 col-lg-10">
-            <div className="card shadow p-4 border rounded-2">
-              <div className="row">
-                <div className="col-md-1"></div>
-                <div className="col-md-5 py-md-5">
-                  <div className="card-body p-md-4 px-2 py-3">
-                    <h3 className="card-title text-center fs-2 mb-4 cl4">
-                      Restaurant Login
-                    </h3>
+    <>
+      <div className='smartdine-banner' style={{ backgroundImage: `url(${bgImg})` }} id='restaurantLogin'>
+        <div className="smartdine-overlay opacity-75"></div>
+        <div className="position-relative z-1 w-100">
+          <div className="container px-3">
+            <div className="row">
+              <div className="col-md-3"></div>
 
-                    <p className="text-center text-muted mb-4">
-                      Welcome back! Please login to your account
-                    </p>
+              {/* Restaurant Login Page */}
+              <div className="col-md-6 p-md-5 px-4 py-5 shadow rounded smartdine-overlay position-relative">
+                <div className="row cl5 mb-3 f2">
+                  <span className="fs-3 fw-semibold">
+                    <i className="bi bi-person-circle me-3"></i>
+                    Restaurant <i className="cl1">Login</i>
+                  </span>
+                </div>
 
-                    {/* Login Form */}
-                    <form onSubmit={handleLogin}>
+                <hr className='border-light border-1' />
+                <p className="cl5 f2">
+                  <b className="cl3">Welcome back!</b> Please login to your account
+                </p>
+
+                <div className="row f2">
+                  {/* Login Form */}
+                  <form onSubmit={handleLogin}>
+                    <div className="my-3 input-group">
+                      <span className="input-group-text text-muted">
+                        <i className="bi bi-envelope"></i>
+                      </span>
                       <input
                         type="text"
-                        className="form-control form-control rounded-1 mt-2 mb-4"
+                        className="form-control"
                         name="res_login_id"
                         maxLength={100}
                         value={formFields.res_login_id}
@@ -90,10 +101,14 @@ const RestaurantLogin = () => {
                         placeholder="Login ID"
                         required
                       />
-
+                    </div>
+                    <div className="my-3 input-group">
+                      <span className="input-group-text text-muted">
+                        <i className="bi bi-lock"></i>
+                      </span>
                       <input
                         type="password"
-                        className="form-control form-control rounded-1 mt-2 mb-4"
+                        className="form-control"
                         name="res_login_password"
                         minLength={8}
                         maxLength={128}
@@ -102,75 +117,42 @@ const RestaurantLogin = () => {
                         placeholder="Password"
                         required
                       />
+                    </div>
 
-                      <div className="text-end mb-4">
-                        <Link to="/forget-password" className="text-decoration-none fw-semibold cl4">
-                          Forgot Password?
+                    <div className="text-end mb-4">
+                      <Link to="/forget-password" className="text-decoration-none fw-semibold cl5">
+                        Forgot Password?
+                      </Link>
+                    </div>
+
+
+
+                    <button type="submit" className="btn btn-danger w-100 mt-3">
+                      <i className='bi bi-box-arrow-in-right me-2'></i>Login
+                    </button>
+                    <div className="d-flex mt-3 cl5">
+                      <hr className="flex-grow-1" />
+                    </div>
+
+                    <div className="d-grid justify-content-center f2 mt-4">
+                      <span className='cl5'>
+                        Don't have an account?
+                        <Link to="/restaurant-register" className='text-decoration-none mx-2 fw-semibold cl1'>
+                          Register Now
                         </Link>
-                      </div>
+                      </span>
+                    </div>
+                  </form>
 
-                      <div className="d-grid mb-3">
-                        <button type="submit" className="btn btn btn-dark rounded-2">
-                          Login
-                        </button>
-                      </div>
-
-                      <div className="d-flex align-items-center my-4">
-                        <hr className="flex-grow-1" />
-                        <span className="px-2 small text-muted">
-                          or continue with
-                        </span>
-                        <hr className="flex-grow-1" />
-                      </div>
-
-                      {/* Social Login Buttons */}
-                      <div className="d-grid mb-3">
-                        <button
-                          type="button"
-                          className="btn btn-outline-danger w-100 "
-                        >
-                          <i className="bi bi-google me-2"></i> Google
-                        </button>
-                      </div>
-
-                      <div className="d-grid mb-3">
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary w-100"
-                        >
-                          <i className="bi bi-facebook me-2"></i> Facebook
-                        </button>
-                      </div>
-
-                      <div className="text-center mt-5">
-                        <p className="mb-0">
-                          Don't have an account?{" "}
-                          <Link
-                            to="/restaurant-register"
-                            className="text-danger fw-semibold text-decoration-none"
-                          >
-                            Register Now
-                          </Link>
-                        </p>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div className="col-md-1"></div>
-
-                <div className="col-md-5 d-none d-md-block ">
-                  <img
-                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                    alt="Restaurant Interior"
-                    className="img-fluid rounded-3 h-100 object-fit-cover"
-                  />
                 </div>
               </div>
+
+              <div className="col-md-3"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
