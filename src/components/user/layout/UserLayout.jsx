@@ -1,14 +1,9 @@
-import { Outlet } from 'react-router-dom'
-import { UserContext } from '../../../context/Context'
-import { useContext } from 'react';
-import Header from './Header';
 import { Outlet } from "react-router-dom";
 import { UserContext } from "../../../context/Context";
 import { useContext } from "react";
 import Header from "./Header";
 
 const UserLayout = () => {
-  
   // const location = navigator.geolocation.getCurrentPosition(success);
   // const locApi = process.env.REACT_APP_LOCATION_API;
 
@@ -27,12 +22,10 @@ const UserLayout = () => {
   // }
   return (
     <>
-      <Header/>
+      <Header />
       <div>
-        
         <Header />
         <Outlet />
-        
       </div>
     </>
   );
