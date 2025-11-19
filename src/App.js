@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.scss';
+import "./App.scss";
 
 import RestaurantState from "./context/RestaurantState";
 import UserState from "./context/UserState";
@@ -18,8 +18,8 @@ import UserRegister from "./components/user/UserRegister";
 import RestaurantLogin from "./components/restaurants/RestaurantLogin";
 import RestaurantRegister from "./components/restaurants/RestaurantRegister";
 import UserDashboard from "./components/user/layout/UserDashboard";
-import LoadingBar from 'react-top-loading-bar'
-import Top from './components/master/Top'
+import LoadingBar from "react-top-loading-bar";
+import Top from "./components/master/Top";
 
 import { Toaster } from "react-hot-toast";
 
@@ -44,28 +44,33 @@ import OrdersList from "./components/restaurants/orders/OrdersList";
 import Menu from "./components/restaurants/menu/Menu";
 import Tables from "./components/restaurants/tables/Tables";
 import Staff from "./components/restaurants/staff/Staff";
-
+import Bookings from "./components/user/bookings/Bookings";
+import AllBooking from "./components/user/bookings/AllBooking";
+import Orders from "./components/user/orders/Orders";
+import CheckoutOrder from "./components/user/orders/CheckoutOrder";
 
 const App = () => {
-
   const { progress } = useContext(MyStateContext);
   useEffect(() => {
     Aos.init();
   }, []);
 
   return (
-
     <BrowserRouter basename="/smartdine">
-      
-      <Top/>
-      <LoadingBar color='#E2293F' height="3px" loaderSpeed="1000" shadow={true} progress={progress} />
+      <Top />
+      <LoadingBar
+        color="#E2293F"
+        height="3px"
+        loaderSpeed="1000"
+        shadow={true}
+        progress={progress}
+      />
       <Toaster position="top-center" reverseOrder={false} />
 
       <MainState>
         <RestaurantState>
           <UserState>
             <Routes>
-
               {/* General layout Routes */}
               <Route path="/" element={<GeneralLayout />}>
                 <Route index element={<Main />} />
@@ -76,7 +81,10 @@ const App = () => {
 
                 {/* Restaurant routes */}
                 <Route path="restaurant-login" element={<RestaurantLogin />} />
-                <Route path="restaurant-register" element={<RestaurantRegister />} />
+                <Route
+                  path="restaurant-register"
+                  element={<RestaurantRegister />}
+                />
               </Route>
 
               <Route path="otp-verification" element={<OtpVerification />} />
@@ -84,7 +92,17 @@ const App = () => {
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="partner-with-us" element={<ParternsWithUs />} />
 
-              <Route path="payment" element={<Upi upiId="stunningchandankmg3366-1@okicici" name="Chandan Gupta" amount="1.00" note="Payment for Testing" />} />
+              <Route
+                path="payment"
+                element={
+                  <Upi
+                    upiId="stunningchandankmg3366-1@okicici"
+                    name="Chandan Gupta"
+                    amount="1.00"
+                    note="Payment for Testing"
+                  />
+                }
+              />
 
               {/* Restaurant Routes */}
               <Route element={<RestaurantProtected />}>
@@ -95,15 +113,16 @@ const App = () => {
                   <Route path="menu" element={<Menu />} />
                   <Route path="tables" element={<Tables />} />
                   <Route path="staff" element={<Staff />} />
-
                 </Route>
               </Route>
 
-
               <Route element={<UserProtected />}>
-                <Route path="user" element={<UserLayout />} >
+                <Route path="user" element={<UserLayout />}>
                   <Route index element={<UserDashboard />} />
-                  {/* <Route path="otp-verification" element = {<OtpVerification/>}/> */}
+                  <Route path="booking" element={<Bookings />} />
+                  <Route path="booking-details" element={<AllBooking />} />
+                  <Route path="orders" element={<Orders />} />
+                  <Route path="check-out-order" element={<CheckoutOrder />} />
                 </Route>
               </Route>
 
@@ -123,7 +142,6 @@ const App = () => {
           </Route>
         </Routes>
       </AdminState> */}
-
     </BrowserRouter>
   );
 };
