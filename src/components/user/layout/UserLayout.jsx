@@ -1,13 +1,13 @@
-import { Outlet } from 'react-router-dom'
-import { UserContext } from '../../../context/Context'
-import { useContext } from 'react';
+import { Outlet } from "react-router-dom";
+import { UserContext } from "../../../context/Context";
+import { useContext } from "react";
+import Header from "./Header";
 
 const UserLayout = () => {
-  const { logout } = useContext(UserContext);
-
+  
   // const location = navigator.geolocation.getCurrentPosition(success);
   // const locApi = process.env.REACT_APP_LOCATION_API;
-  
+
   // function success(position){
   //   const location_url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${locApi}`;
   //   axios.get(location_url).then(response => {
@@ -24,13 +24,13 @@ const UserLayout = () => {
   return (
     <>
       <div>
-        <h2>User Layout</h2>
-        {/* <h2>{userData}</h2> */}
+        
+        <Header />
         <Outlet />
-        <button onClick={logout}>Logout</button>
+        
       </div>
     </>
-  )
-}
+  );
+};
 
-export default UserLayout
+export default UserLayout;
