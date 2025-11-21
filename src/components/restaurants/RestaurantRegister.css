@@ -1,0 +1,368 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Banner with Background Image */
+.smartdine-banner {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 100px 0 40px;
+}
+
+/* Dark Overlay */
+.smartdine-overlay {
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Overlay layer */
+.smartdine-banner .smartdine-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Main Registration Card Container */
+.smartdine-banner > .position-relative {
+  z-index: 2;
+}
+
+/* Transparent Form Card */
+.smartdine-banner .p-md-5 {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Header Section */
+.cl5 {
+  color: white !important;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 2rem;
+}
+
+.cl5 h3 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cl5 p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* Sidebar Step Items */
+.list-group-item {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: translateX(5px);
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.list-group-item.active {
+  background: linear-gradient(135deg, #ff4444, #ff6b6b) !important;
+  border-color: #ff4444 !important;
+  transform: translateX(5px);
+}
+
+.list-group-item h5 {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.list-group-item small {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.list-group-item.active small {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Step Icon Circles */
+.bg-primary.rounded-circle,
+.bg-secondary.rounded-circle,
+.bg-success.rounded-circle {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: white !important;
+  font-size: 1.2rem;
+}
+
+.list-group-item.active .bg-primary.rounded-circle,
+.list-group-item.active .bg-secondary.rounded-circle,
+.list-group-item.active .bg-success.rounded-circle {
+  background: white !important;
+  color: #ff4444 !important;
+}
+
+/* Progress Section */
+.bg-white.rounded-3.shadow-sm {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: none !important;
+}
+
+.bg-white.rounded-3.shadow-sm h6 {
+  color: white !important;
+  font-weight: 600;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.bg-white.rounded-3.shadow-sm .text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Progress Bar */
+.progress {
+  background: rgba(255, 255, 255, 0.2) !important;
+  height: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #ff4444, #ff6b6b) !important;
+}
+
+/* Form Section Headings */
+.text-primary {
+  color: white !important;
+}
+
+.border-bottom {
+  border-bottom-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Form Labels */
+.form-label {
+  color: white !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem;
+}
+
+/* Input Groups */
+.input-group-text {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+/* Form Controls - Inputs, Selects */
+.form-control,
+.form-select {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #333 !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: white !important;
+  border-color: #ff4444 !important;
+  box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.15) !important;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.form-control:disabled {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Small Helper Text */
+.text-muted,
+small {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Primary Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #ff4444, #ff6b6b) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 68, 68, 0.5);
+  background: linear-gradient(135deg, #ff3333, #ff5555) !important;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Success Button */
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #34d399) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-success:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+}
+
+.btn-success:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Outline Buttons */
+.btn-outline-secondary,
+.btn-outline-primary {
+  border: 2px solid white !important;
+  color: white !important;
+  font-weight: 600;
+  background: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover {
+  background: white !important;
+  color: #ff4444 !important;
+  transform: translateY(-2px);
+}
+
+/* Help Button */
+.btn-outline-primary.rounded-pill {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary.rounded-pill:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: none;
+}
+
+/* Checkbox Styling */
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.form-check-input:checked {
+  background-color: #ff4444;
+  border-color: #ff4444;
+}
+
+.form-check-label {
+  color: white !important;
+  font-weight: 500;
+}
+
+/* Footer Section */
+.card-footer,
+.bg-light {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.card-footer p,
+.bg-light p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.card-footer a,
+.text-decoration-none {
+  color: #ff6b6b !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card-footer a:hover,
+.text-decoration-none:hover {
+  color: #ff4444 !important;
+  text-decoration: underline;
+}
+
+/* Sidebar Border */
+.border-end {
+  border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Shadow Overrides */
+.shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .smartdine-banner {
+    padding: 80px 0 20px;
+  }
+
+  .cl5 h3 {
+    font-size: 1.5rem;
+  }
+
+  .border-end {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* Ensure white text in all sections */
+.smartdine-banner .position-relative h1,
+.smartdine-banner .position-relative h2,
+.smartdine-banner .position-relative h3,
+.smartdine-banner .position-relative h4,
+.smartdine-banner .position-relative h5,
+.smartdine-banner .position-relative h6,
+.smartdine-banner .position-relative p,
+.smartdine-banner .position-relative label,
+.smartdine-banner .position-relative span:not(.input-group-text) {
+  color: white !important;
+}

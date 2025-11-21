@@ -8,7 +8,7 @@ const Header = () => {
   const location = useLocation()
 
   const NavList = [
-    { "id": "1", "to": "/partner-with-us", "name": "Add Restaurant", "icon": "patch-plus" },
+    { "id": "1", "to": "/partner-with-us", "name": "Add Restaurant", "icon": "shop" },
     { "id": "3", "to": "/user-register", "name": "SignUp", "icon": "person-plus" },
     { "id": "2", "to": "/user-login", "name": "Login", "icon": "box-arrow-in-right" },
   ];

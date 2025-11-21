@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import ApiService from "../../apiservice/ApiService";
 import { useNavigate } from "react-router-dom";
-import { ResturantContext } from "../../context/Context";
+import { RestaurantContext } from "../../context/Context";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import bgImg from '../../assets/image/user/kitchen-6878026.jpg';
@@ -9,7 +9,7 @@ import bgImg from '../../assets/image/user/kitchen-6878026.jpg';
 const RestaurantLogin = () => {
   document.title = "Restaurant Login | SmartDine";
   const navigate = useNavigate();
-  const { isLoggedIn, login } = useContext(ResturantContext); // Destructure login from context
+  const { isLoggedIn, login } = useContext(RestaurantContext); // Destructure login from context
 
   const [formFields, setFormFields] = useState({
     res_login_id: "",

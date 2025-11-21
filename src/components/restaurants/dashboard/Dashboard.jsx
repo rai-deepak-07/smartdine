@@ -21,7 +21,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Row, Col, Card, Button, Form, ProgressBar, Badge, Alert } from 'react-bootstrap';
-import { ResturantContext } from '../../../context/Context'; 
+import { RestaurantContext } from '../../../context/Context'; 
 
 const injectedStyles = new Set();
 const injectCSS = (id, css) => {
@@ -121,7 +121,7 @@ const SettingsForm = ({ settings, onSettingsChange, onSave }) => {
 };
 
 const Dashboard = () => {
-  const { restaurantData } = useContext(ResturantContext);
+  const { restaurantData } = useContext(RestaurantContext);
   const [showSaveAlert, setShowSaveAlert] = useState(false);
 
   // Initialize settings with data from context or defaults

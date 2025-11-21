@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { ResturantContext } from '../../../context/Context';
+import { RestaurantContext } from '../../../context/Context';
 import { useNavigate, useLocation, Outlet, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import './sidebars.scss'
 
 const RestaurantLayout = () => {
-  const { isLoggedIn, logout, restaurantData } = useContext(ResturantContext);
-  console.log(restaurantData);
+  const { isLoggedIn, logout, restaurantData } = useContext(RestaurantContext);
+  // console.log(restaurantData);
 
 
   const navigate = useNavigate();
