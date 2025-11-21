@@ -48,6 +48,10 @@ import Bookings from "./components/user/bookings/Bookings";
 import AllBooking from "./components/user/bookings/AllBooking";
 import Orders from "./components/user/orders/Orders";
 import CheckoutOrder from "./components/user/orders/CheckoutOrder";
+<<<<<<< HEAD
+=======
+import RestaurantReg from "./components/restaurants/RestaurantReg";
+>>>>>>> main
 
 const App = () => {
   const { progress } = useContext(MyStateContext);
@@ -127,7 +131,7 @@ const App = () => {
               </Route>
 
               {/* Fallback */}
-              <Route path="*" element={<NoPage />} />
+              <Route path="*" element={<RestaurantReg />} />
             </Routes>
           </UserState>
         </RestaurantState>

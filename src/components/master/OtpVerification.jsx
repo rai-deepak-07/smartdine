@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import ApiService from "../../apiservice/ApiService";
-import { ResturantContext } from "../../context/Context";
+import { RestaurantContext } from "../../context/Context";
 import logo from '../../assets/image/general/logo.png'
 
 
 const OtpVerification = () => {
     document.title = "Email Verification | SmartDine";
-    const { sendWelcomeEmail } = useContext(ResturantContext);
+    const { sendWelcomeEmail } = useContext(RestaurantContext);
     const location = useLocation();
     const navigate = useNavigate();
 

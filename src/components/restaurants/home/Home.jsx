@@ -1,20 +1,5 @@
-const restaurantData = {
-    city: "Kanpur",
-    email: "raikwardeepak310@gmail.com",
-    fssai_license_no: "12345678912AAD",
-    fssai_license_url: "https://smartdine00.pythonanywhere.com/media/SmartDine/Rest...",
-    google_location_url: "https://maps.app.goo.gl/EqSWhaBNvfPVsRi47",
-    gst_registration_no: "22AAAAA0000A5dfg",
-    gst_registration_url: "https://smartdine00.pythonanywhere.com/media/SmartDine/R...",
-    id: "SDCAFE2031082025",
-    owner_mobile_no: "7895641325",
-    owner_name: "Pranveer",
-    res_address: "PSIT",
-    res_contact_no: "7894587458",
-    res_name: "Cafe2004",
-    state: "Uttar Pradesh"
-};
-
+import { useContext } from "react";
+import { RestaurantContext } from "../../../context/Context";
 
 const CardField = ({ icon, label, value, link }) => (
     <div className="d-flex align-items-center mb-2">
@@ -28,8 +13,12 @@ const CardField = ({ icon, label, value, link }) => (
     </div>
 );
 
-const Home = () => (
-    <div className="container-fluid p-0 pt-3">
+const Home = () =>{
+    const {restaurantData} = useContext(RestaurantContext);
+    
+    return (
+        
+        <div className="container-fluid p-0 pt-3">
         <div className="row">
             <div className="col-md-6">
                 {/* Owner Card */}
@@ -87,5 +76,6 @@ const Home = () => (
         </div>   
     </div>
 );
+}
 
 export default Home;

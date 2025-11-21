@@ -4,6 +4,10 @@ import { useContext } from "react";
 import Header from "./Header";
 
 const UserLayout = () => {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> main
   // const location = navigator.geolocation.getCurrentPosition(success);
   // const locApi = process.env.REACT_APP_LOCATION_API;
 
@@ -24,8 +28,15 @@ const UserLayout = () => {
     <>
       <Header />
       <div>
+<<<<<<< HEAD
         <Header />
         <Outlet />
+=======
+        
+        <Header />
+        <Outlet />
+        
+>>>>>>> main
       </div>
     </>
   );

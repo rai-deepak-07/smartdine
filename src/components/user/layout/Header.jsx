@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../../context/Context";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const { logout, userData } = useContext(UserContext);
+=======
+
+const Header = () => {
+  const { location, logout, userData } = useContext(UserContext);
+>>>>>>> main
 
   // Create the config object with fallbacks
   const config = {
@@ -35,7 +41,10 @@ const Header = () => {
     );
   }
 
+<<<<<<< HEAD
   const location = "Kanpur";
+=======
+>>>>>>> main
   return (
     <div className="container-fluid py-3">
       <div className="card mb-4 shadow-sm">
