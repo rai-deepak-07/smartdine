@@ -198,7 +198,8 @@ const App = () => {
       <Row className="mb-3 align-items-center">
         <Col>
             <div className="d-flex align-items-center flex-wrap">
-                <div className="d-flex align-items-center me-3"><div style={{width: '20px', height: '20px', borderRadius: '4px', marginRight: '8px', border: '1px solid', backgroundColor: 'var(--bs-success-bg-subtle)', borderColor: 'var(--bs-success-border-subtle)'}}></div>Available</div>
+                <div className="d-flex align-items-center me-3">
+                  <div style={{width: '20px', height: '20px', borderRadius: '4px', marginRight: '8px', border: '1px solid', backgroundColor: 'var(--bs-success-bg-subtle)', borderColor: 'var(--bs-success-border-subtle)'}}></div>Available</div>
                 <div className="d-flex align-items-center me-3"><div style={{width: '20px', height: '20px', borderRadius: '4px', marginRight: '8px', border: '1px solid', backgroundColor: 'var(--bs-danger-bg-subtle)', borderColor: 'var(--bs-danger-border-subtle)'}}></div>Booked</div>
                 <div className="d-flex align-items-center me-3"><div style={{width: '20px', height: '20px', borderRadius: '4px', marginRight: '8px', border: '1px solid', backgroundColor: 'var(--bs-warning-bg-subtle)', borderColor: 'var(--bs-warning-border-subtle)'}}></div>Occupied</div>
                 <div className="d-flex align-items-center"><div style={{width: '20px', height: '20px', borderRadius: '4px', marginRight: '8px', border: '1px solid', backgroundColor: 'var(--bs-secondary-bg-subtle)', borderColor: 'var(--bs-secondary-border-subtle)'}}></div>Cleaning</div>
