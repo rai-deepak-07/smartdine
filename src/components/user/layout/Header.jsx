@@ -1,31 +1,22 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../../context/Context";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import { Button } from "react-bootstrap";
 
 const Header = () => {
   const { location, logout, userData } = useContext(UserContext);
 
-  // Create the config object with fallbacks
+  // Create simplified config
   const config = {
-    userSection: {
-      avatar: userData?.user_name?.charAt(0).toUpperCase() || "U",
-      welcomeText: `Welcome, ${userData?.user_name || "User"}!`,
-      locationText: location || "Not specified",
-      contact: userData
-        ? [
-            {
-              icon: "bi bi-envelope",
-              text: userData.user_email || "No email",
-            },
-            {
-              icon: "bi bi-phone",
-              text: userData.user_mobile_no || "No phone",
-            },
-          ]
-        : [],
-    },
+    avatar: userData?.user_name?.charAt(0).toUpperCase() || "U",
+    welcome: userData?.user_name || "User",
+    location: location || "Not specified",
+    email: userData?.user_email || "No email",
+    phone: userData?.user_mobile_no || "No phone",
   };
 
-  // If context is not available, show a fallback
   if (!userData && !location) {
     return (
       <div className="alert alert-warning m-3">
@@ -35,44 +26,50 @@ const Header = () => {
   }
 
   return (
-    <div className="container-fluid py-3">
-      <div className="card mb-4 shadow-sm">
-        <div className="card-body">
-          <div className="row align-items-center">
-            <div className="col-md-8">
-              <div className="d-flex align-items-center">
-                <div
-                  className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                  style={{ width: "45px", height: "45px", fontSize: "24px" }}
-                >
-                  {config.userSection.avatar}
-                </div>
-                <div>
-                  <h4 className="mb-1">{config.userSection.welcomeText}</h4>
-                  <p className="text-muted mb-0">
-                    <i className="bi bi-geo-alt-fill me-2"></i>
-                    {config.userSection.locationText}
-                  </p>
-                </div>
-              </div>
-            </div>
+    <Navbar bg="light" expand="lg" className="shadow-sm" sticky="top">
+      <Container>
+        {/* Avatar */}
+        <span
+          className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-md-2"
+          style={{ width: "40px", height: "40px", fontSize: "20px" }}
+        >
+          {config.avatar}
+        </span>
+        <Navbar className="fw-bold fs-5 f6 pb-0">
+          Welcome, {config.welcome}
+        </Navbar>
 
-            <div className="col-md-4 text-md-end mt-3 mt-md-0">
-              {config.userSection.contact.map((item, idx) => (
-                <p key={idx} className="mb-1">
-                  <i className={`${item.icon} me-2 text-primary`}></i>
-                  {item.text}
-                </p>
-              ))}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-              <span className="fs-3" cursor="pointer" onClick={logout}>
-                <i className="bi bi-box-arrow-left"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav className="align-items-md-center my-md-0 my-4 mx-md-0 mx-3">
+            {/* Location */}
+            <span className="me-4 text-muted mb-md-0 mb-3">
+              <i className="bi bi-geo-alt-fill me-1"></i>
+              {config.location}
+            </span>
+
+            {/* Email */}
+            <span className="me-4 mb-md-0 mb-3">
+              <i className="bi bi-envelope me-2"></i>
+              {config.email}
+            </span>
+
+            {/* Phone */}
+            <span className="me-4 mb-md-0 mb-3">
+              <i className="bi bi-phone me-2"></i>
+              {config.phone}
+            </span>
+
+            {/* Logout Button */}
+            <Button variant="danger" size="md" className="rounded-1" onClick={logout}>
+              Logout
+              <i className="bi bi-box-arrow-right ms-2"></i>
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

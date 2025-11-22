@@ -45,10 +45,12 @@ import Menu from "./components/restaurants/menu/Menu";
 import Tables from "./components/restaurants/tables/Tables";
 import Staff from "./components/restaurants/staff/Staff";
 import Bookings from "./components/user/bookings/Bookings";
-import AllBooking from "./components/user/bookings/AllBooking";
+import AllBooking from "./components/user/bookings/MyBookings";
 import Orders from "./components/user/orders/Orders";
 import CheckoutOrder from "./components/user/orders/CheckoutOrder";
 import RestaurantReg from "./components/restaurants/RestaurantReg";
+import MyBookings from "./components/user/bookings/MyBookings";
+import MyOrders from "./components/user/orders/MyOrders";
 
 const App = () => {
   const { progress } = useContext(MyStateContext);
@@ -120,9 +122,11 @@ const App = () => {
               <Route element={<UserProtected />}>
                 <Route path="user" element={<UserLayout />}>
                   <Route index element={<UserDashboard />} />
-                  <Route path="booking" element={<Bookings />} />
-                  <Route path="booking-details" element={<AllBooking />} />
-                  <Route path="orders" element={<Orders />} />
+                  <Route path="bookings/:id" element={<Bookings />} />
+                  {/* <Route path="booking-details" element={<AllBooking />} /> */}
+                  <Route path="bookings" element={<MyBookings />} />
+                  <Route path="orders" element={<MyOrders />} />
+                  <Route path="place-order" element={<Orders />} />
                   <Route path="check-out-order" element={<CheckoutOrder />} />
                 </Route>
               </Route>

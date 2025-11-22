@@ -58,7 +58,6 @@ const RestaurantState = (props) => {
       });
   };
 
-
   // Staff Management State and Handlers
   const [staffData, setStaffData] = useState([]);
 
@@ -240,12 +239,6 @@ const deleteTable = async (id) => {
     try {
       const restaurant_id = localStorage.getItem("restaurant_reg_id");
       formData.append("restaurant", restaurant_id);
-      for (let pair of formData.entries()) {
-  console.log(pair[0] + ':', pair[1]);
-}
-
-      
-
       await RestaurantApi.post("management/menu-items/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -285,7 +278,10 @@ const deleteTable = async (id) => {
 
   const fetchTodayActiveOrders = async () => {
     const restaurant_id = localStorage.getItem('restaurant_reg_id');
-    const today = new Date().toISOString().split('T')[0];
+    // const today = new Date().toISOString().split('T')[0];
+    const today = new Date().toLocaleDateString('en-CA');
+    console.log(today);
+    
     try {
       const res = await RestaurantApi.get(`management/orders/?restaurant=${restaurant_id}&tables__booking_date=${today}&tables__checked_in=true&status_not=completed`);
       setActiveOrders(res.data);
