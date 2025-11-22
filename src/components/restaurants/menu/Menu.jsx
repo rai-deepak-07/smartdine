@@ -188,7 +188,7 @@ const Menu = () => {
             <div className="row mt-3">
               {items.map((item) => (
                 <div className="col-md-6 mb-3" key={item.id}>
-                  <div className="card mb-3" style={{ maxWidth: "540px", maxHeight: "250px", overflow: "hidden" }}>
+                  <div className="card mb-3" style={{ maxWidth: "540px", overflow: "hidden" }}>
                     <div className="row g-0">
                       <div className="col-md-4">
                         {item.image ? (
@@ -196,7 +196,7 @@ const Menu = () => {
                             src={item.image}
                             className="img-fluid rounded-start"
                             alt={item.name}
-                            style={{ objectFit: "cover", height: "100%", width: "100%" }}
+                            style={{ objectFit: "cover", height: "30vh", width: "100%" }}
                           />
                         ) : (
                           <div className="d-flex align-items-center justify-content-center bg-light rounded-start" style={{ height: "180px" }}>

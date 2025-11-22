@@ -271,10 +271,10 @@ const Staff = () => {
   }, []);
 
   return (
-    <div className="container-fluid p-4">
+    <div className="container-fluid p-md-4 px-0 py-2">
       <div className="card border-0 shadow-sm">
         <div className="card-body">
-          <div className="d-flex justify-content-between mb-3">
+          <div className="d-flex justify-content-between flex-md-row flex-column-reverse mb-3">
             {/* Show entries */}
             <div className="d-flex align-items-center">
               <span className="me-2 text-muted">Show</span>
@@ -295,11 +295,12 @@ const Staff = () => {
             </div>
 
             {/* Search + Add */}
-            <div className="d-flex">
+            <div className="d-flex mb-md-0 mb-3">
               <InputGroup className="me-2" style={{ width: "360px" }}>
                 <Form.Control
                   placeholder="Search by name, email, role, contact..."
                   value={searchQuery}
+                  className="form-control-sm"
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
                     setCurrentPage(1);

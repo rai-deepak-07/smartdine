@@ -11,23 +11,23 @@ const UserDashboard = () => {
   // Filter restaurants
   const filteredRestaurants = localRestaurantData
     ? localRestaurantData.filter((restaurant) => {
-        const matchesSearch =
-          restaurant.res_name
-            ?.toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-          restaurant.city?.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesFilter =
-          filter === "all" || restaurant.cuisine_type === filter;
-        return matchesSearch && matchesFilter;
-      })
+      const matchesSearch =
+        restaurant.res_name
+          ?.toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        restaurant.city?.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesFilter =
+        filter === "all" || restaurant.cuisine_type === filter;
+      return matchesSearch && matchesFilter;
+    })
     : [];
 
   const cuisineTypes = localRestaurantData
     ? [
-        ...new Set(
-          localRestaurantData.map((r) => r.cuisine_type).filter(Boolean)
-        ),
-      ]
+      ...new Set(
+        localRestaurantData.map((r) => r.cuisine_type).filter(Boolean)
+      ),
+    ]
     : [];
 
   return (
@@ -73,10 +73,7 @@ const UserDashboard = () => {
                 <div className="card h-100 shadow-sm hover-lift">
                   <div className="position-relative">
                     <img
-                      src={
-                        restaurant.image_url ||
-                        `https://picsum.photos/seed/${restaurant.id}/300/200.jpg`
-                      }
+                      src={restaurant.restaurant_image}
                       className="card-img-top"
                       alt={restaurant.res_name}
                       style={{ height: "180px", objectFit: "cover" }}
@@ -86,30 +83,40 @@ const UserDashboard = () => {
                       {restaurant.rating || "4.5"}
                     </span>
                   </div>
-                  <div className="card-body d-flex flex-column">
+
+                  <div className="card-body d-flex flex-column f2">
                     <span className="d-flex justify-content-between">
-                      <span className="card-title fs-5">
+                      <span className="card-title h4">
                         {restaurant.res_name}
                       </span>
                       <Link to={restaurant.google_location_url}>
-                        <i class="bi bi-geo-alt-fill"></i>
+                        <i className="bi bi-geo-alt-fill cl1"></i>
                       </Link>
                     </span>
                     <p className="text-muted small mb-2">
-                      <i className="fas fa-map-marker-alt me-1"></i>
+                      <i className="bi bi-geo-fill me-1 cl1"></i>
                       {restaurant.city}
                     </p>
                     <p className="badge bg-secondary mb-2 align-self-start">
                       {restaurant.cuisine_type || "Various"}
                     </p>
-                    <p className="card-text flex-grow-1">
+                    {/* <p className="card-text flex-grow-1">
                       {restaurant.description ||
                         "Delicious food in a cozy atmosphere."}
-                    </p>
+                    </p> */}
+
+                    <div className="mb-3 p-3 bg-light rounded">
+                      <h6 className="mb-1 fw-semibold">Opening Hours</h6>
+                      <div className="fw-semibold">
+                        {new Date(`1970-01-01T${restaurant.opening_time}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
+                        {new Date(`1970-01-01T${restaurant.closing_time}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </div>
+                    </div>
+
                     <div className="d-flex gap-2 mt-auto">
-                      <button className="btn btn-outline-primary btn-sm flex-fill">
+                      <Link to={`bookings/${restaurant.id}`} className="btn btn-outline-primary btn-sm flex-fill">
                         Book Table
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -117,7 +124,9 @@ const UserDashboard = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-5">no</div>
+          <div class="alert alert-secondary" role="alert">
+            No Restaurant Available
+          </div>
         )}
       </div>
       <style jsx>{`
