@@ -41,46 +41,40 @@ apiRestaurantService.interceptors.request.use(
 apiRestaurantService.interceptors.response.use(
   (response) => response,
   async (error) => {
-    console.log("Interceptor caught error:", error);
-    if (!error.response) {
-      // No response means network or CORS error, handle separately
-      return Promise.reject(error);
-    }
-
     const originalRequest = error.config;
-    console.log("Error status:", error.response.status);
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const refreshToken = getRefreshToken();
-      console.log("Using refresh token:", refreshToken);
-
       if (!refreshToken) {
         removeTokens();
-        window.location.href = "/restaurant-login";
+        window.location.href = '/restaurant-login';
         return Promise.reject(error);
       }
 
       try {
-        const refreshResponse = await refreshInstance.post("token/refresh/", { refresh: refreshToken });
+        const refreshResponse = await refreshInstance.post('token/refresh/', {
+          refresh: refreshToken,
+        });
         const { access } = refreshResponse.data;
+
+        // Save new access token
         setRestaurantToken(access);
 
-        // Update header and retry original request
-        originalRequest.headers["Authorization"] = `Bearer ${access}`;
+        // Update original request and retry
+        originalRequest.headers['Authorization'] = `Bearer ${access}`;
         return apiRestaurantService(originalRequest);
       } catch (refreshError) {
-        console.error("Refresh token error:", refreshError);
         removeTokens();
-        window.location.href = "/restaurant-login";
+        window.location.href = '/restaurant-login';
         return Promise.reject(refreshError);
       }
     }
 
+    // Reject any other errors
     return Promise.reject(error);
   }
 );
-
 
 export default apiRestaurantService;

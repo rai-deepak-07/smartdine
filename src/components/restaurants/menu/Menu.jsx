@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Modal, Button, Form, Card } from "react-bootstrap";
+import { Modal, Button, Form, Card, Row, Col, Alert } from "react-bootstrap";
 import { RestaurantContext } from "../../../context/Context";
 
 const Menu = () => {
@@ -7,7 +7,6 @@ const Menu = () => {
     categories,
     fetchCategories,
     addCategory,
-    updateCategory,
     deleteCategory,
     items,
     fetchItems,
@@ -63,14 +62,18 @@ const Menu = () => {
 
   // Add Item Submit
   const submitItem = async () => {
-    const formData = new FormData();
+    if (!itemForm.category) {
+      alert("Please select a category.");
+      return;
+    }
 
+    const formData = new FormData();
     formData.append("name", itemForm.name);
     formData.append("description", itemForm.description);
     formData.append("price", itemForm.price);
     formData.append("food_type", itemForm.food_type);
     formData.append("is_available", itemForm.is_available);
-    formData.append("category", itemForm.category);
+    formData.append("category", String(itemForm.category)); // always send as string
 
     if (itemForm.image) formData.append("image", itemForm.image);
 
@@ -118,84 +121,126 @@ const Menu = () => {
 
   return (
     <div className="container mt-4">
+      <Row className="mb-3">
+        <Col md={12}>
+          <h3><i className="bi bi-card-list me-2"></i>Menu Management</h3>
+        </Col>
+      </Row>
+      <hr />
+
       {/* HEADER */}
       <div className="d-flex gap-3 mb-4">
-        <Button onClick={() => setShowCatModal(true)}>Add Category</Button>
+        <Button size="sm" variant="danger" onClick={() => setShowCatModal(true)}>
+          <i className="bi bi-plus-circle me-2"></i>
+          Add Category
+        </Button>
         <Button
+          size="sm"
           variant="success"
           onClick={() => setShowItemModal(true)}
           disabled={categories.length === 0}
           title={categories.length === 0 ? "Add category first" : ""}
         >
+          <i className="bi bi-plus-circle me-2"></i>
           Add Item
         </Button>
 
       </div>
 
       {/* ================== CATEGORY LIST ================== */}
-      <h4>Categories</h4>
+      <Row>
+        <h5 className="my-3">Total Categories: {categories.length}</h5>
+        <Col md={12}>
+          {categories.length === 0 ? (
+            <Alert variant="secondary" className="text-center">No Categories Found</Alert>
+          ) : (
+            <div className="d-flex flex-wrap gap-3 mb-4">
+              {categories.map((cat) => (
+                <Card key={cat.id} className="p-3 shadow-sm border" style={{ width: "150px" }}>
+                  <h4 className="text-center mb-3">{cat.name}</h4>
 
-      {categories.length === 0 ? (
-        <p className="text-muted">No categories found.</p>
-      ) : (
-        <div className="d-flex flex-wrap gap-3 mb-4">
-          {categories.map((cat) => (
-            <Card key={cat.id} className="p-3 shadow-sm" style={{ width: "200px" }}>
-              <h6 className="text-center">{cat.name}</h6>
-              <Button
-                size="sm"
-                variant="danger"
-                onClick={() => deleteCategory(cat.id)}
-              >
-                Delete
-              </Button>
-            </Card>
-          ))}
-        </div>
-      )}
-
-      {/* ================== ITEMS ================== */}
-      <h4>Menu Items</h4>
-
-      {items.length === 0 ? (
-        <p className="text-muted">No items found.</p>
-      ) : (
-        <div className="row mt-3">
-          {items.map((item) => (
-            <div className="col-md-4 mb-3" key={item.id}>
-              <Card className="shadow-sm h-100">
-                {item.image ? (
-                  <Card.Img
-                    variant="top"
-                    src={item.image}
-                    style={{ height: "180px", objectFit: "cover" }}
-                  />
-                ) : (
-                  <div className="text-center p-5 text-muted">No Image</div>
-                )}
-
-                <Card.Body>
-                  <h5>{item.name}</h5>
-                  <p className="mb-1">{item.description}</p>
-                  <p className="fw-bold">₹ {item.price}</p>
-                  <span className={`badge ${item.food_type === "veg" ? "bg-success" : "bg-danger"}`}>
-                    {item.food_type}
-                  </span>
-                </Card.Body>
-
-                <Card.Footer className="d-flex justify-content-between">
-                  <Button size="sm" variant="warning" onClick={() => openEditModal(item)}>
-                    Edit
-                  </Button>
-                  <Button size="sm" variant="danger" onClick={() => deleteItem(item.id)}>
+                  <Button
+                    size="sm"
+                    variant="outline-danger"
+                    onClick={() => deleteCategory(cat.id)}
+                  >
+                    <i className="bi bi-trash3 me-2"></i>
                     Delete
                   </Button>
-                </Card.Footer>
-              </Card>
+                </Card>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          )}
+        </Col>
+      </Row>
+
+      <hr />
+
+      {/* ================== ITEMS ================== */}
+      <Row>
+        <h5 className="my-3">Total Items: {items.length}</h5>
+
+        <Col md={12} >
+
+          {items.length === 0 ? (
+            <Alert variant="secondary" className="text-center">No Items Found</Alert>
+          ) : (
+            <div className="row mt-3">
+              {items.map((item) => (
+                <div className="col-md-6 mb-3" key={item.id}>
+                  <div className="card mb-3" style={{ maxWidth: "540px", maxHeight: "250px", overflow: "hidden" }}>
+                    <div className="row g-0">
+                      <div className="col-md-4">
+                        {item.image ? (
+                          <img
+                            src={item.image}
+                            className="img-fluid rounded-start"
+                            alt={item.name}
+                            style={{ objectFit: "cover", height: "100%", width: "100%" }}
+                          />
+                        ) : (
+                          <div className="d-flex align-items-center justify-content-center bg-light rounded-start" style={{ height: "180px" }}>
+                            <span className="text-muted">No Image</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="col-md-8">
+                        <div className="card-body">
+                          <h5 className="card-title">{item.name}</h5>
+                          <p className="card-text">
+                            {item.description.length > 250
+                              ? item.description.slice(0, 250) + "..."
+                              : item.description}
+                          </p>
+
+                          <p className="card-text">
+                            <span className="fw-bold">₹ {item.price}</span>
+                            &nbsp;
+                            <span className={`badge ${item.food_type === "veg" ? "bg-success" : "bg-danger"}`}>
+                              {item.food_type}
+                            </span>
+                          </p>
+                          <div className="d-flex justify-content-end mt-3">
+                            <Button size="sm" variant="warning" className="me-3" onClick={() => openEditModal(item)}>
+                              <i className="bi bi-pencil-square me-2"></i>
+                              Edit
+                            </Button>
+                            <Button size="sm" variant="danger" onClick={() => deleteItem(item.id)}>
+                              <i className="bi bi-trash3 me-2"></i>
+                              Delete
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          )}
+        </Col>
+      </Row>
 
       {/* ================== ADD CATEGORY MODAL ================== */}
       <Modal show={showCatModal} onHide={() => setShowCatModal(false)} centered>
@@ -208,6 +253,7 @@ const Menu = () => {
             <Form.Control
               type="text"
               value={newCategory}
+              required={true}
               onChange={(e) => setNewCategory(e.target.value)}
             />
           </Form.Group>
@@ -258,6 +304,7 @@ const Menu = () => {
                     </option>
                   ))}
                 </Form.Select>
+
               </Form.Group>
 
               <Form.Group className="col-md-6 mb-3">

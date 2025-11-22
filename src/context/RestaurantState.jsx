@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { RestaurantContext } from './Context';
 import { useCallback } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RestaurantApi from '../apiservice/RestaurantApi';
 
 const RestaurantState = (props) => {
@@ -111,8 +111,9 @@ const RestaurantState = (props) => {
       console.error("Error deleting staff:", error);
     }
   };
-
-  //Table Management State and Handlers
+  //========================================
+  //   //Table Management State and Handlers
+  //=========================================
 
   const [tablesData, setTablesData] = useState([]);
 
@@ -125,6 +126,41 @@ const RestaurantState = (props) => {
       console.error(err);
     }
   };
+
+  const addTable = async (tableData) => {
+  try {
+    const restaurantId = localStorage.getItem('restaurant_reg_id');
+
+    const payload = {
+      ...tableData,
+      restaurant: restaurantId,
+    };
+
+    await RestaurantApi.post("management/tables/", payload);
+    await fetchTablesData();
+  } catch (error) {
+    console.error("Error adding table:", error);
+  }
+};
+
+const updateTable = async (id, updatedData) => {
+  try {
+    await RestaurantApi.patch(`management/tables/${id}/`, updatedData);
+    await fetchTablesData();
+  } catch (error) {
+    console.error("Error updating table:", error);
+  }
+};
+
+const deleteTable = async (id) => {
+  try {
+    await RestaurantApi.delete(`management/tables/${id}/`);
+    await fetchTablesData();
+  } catch (error) {
+    console.error("Error deleting table:", error);
+  }
+};
+
 
 
   // ===============================
@@ -204,6 +240,11 @@ const RestaurantState = (props) => {
     try {
       const restaurant_id = localStorage.getItem("restaurant_reg_id");
       formData.append("restaurant", restaurant_id);
+      for (let pair of formData.entries()) {
+  console.log(pair[0] + ':', pair[1]);
+}
+
+      
 
       await RestaurantApi.post("management/menu-items/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -237,6 +278,39 @@ const RestaurantState = (props) => {
     }
   };
 
+  // ===============================
+  // All Active ORDERS TODAY
+  // ===============================
+  const [activeOrders, setActiveOrders] = useState([]);
+
+  const fetchTodayActiveOrders = async () => {
+    const restaurant_id = localStorage.getItem('restaurant_reg_id');
+    const today = new Date().toISOString().split('T')[0];
+    try {
+      const res = await RestaurantApi.get(`management/orders/?restaurant=${restaurant_id}&tables__booking_date=${today}&tables__checked_in=true&status_not=completed`);
+      setActiveOrders(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const updateItemStatus = async (orderItemId, preparedStatus) => {
+    try {
+      await RestaurantApi.patch(`management/order-items/${orderItemId}/`, { prepared: preparedStatus });
+      await fetchTodayActiveOrders();
+    } catch (err) {
+      console.error("Error updating item status:", err);
+    }
+  };
+
+  const updateOrderStatus = async (orderId, status) => {
+    try {
+      await RestaurantApi.patch(`management/orders/${orderId}/`, { status: status });
+      await fetchTodayActiveOrders();
+    } catch (err) {
+      console.error("Error updating order status:", err);
+    }
+  };
 
   const sendWelcomeEmail = (owner_name, res_name, to_email) => {
     const templateParams = {
@@ -273,7 +347,7 @@ const RestaurantState = (props) => {
   }, [isLoggedIn]);
 
   return (
-    <RestaurantContext.Provider value={{ isLoggedIn, login, logout, restaurantData, staffData, fetchStaffData, addStaff, updateStaff, deleteStaff, categories, fetchCategories, addCategory, updateCategory, deleteCategory, items, fetchItems, addItem, updateItem, deleteItem, sendWelcomeEmail }}>
+    <RestaurantContext.Provider value={{ isLoggedIn, login, logout, restaurantData, staffData, fetchStaffData, addStaff, updateStaff, deleteStaff, categories, fetchCategories, addCategory, deleteCategory, items, fetchItems, addItem, updateItem, deleteItem, sendWelcomeEmail, tablesData, fetchTablesData, addTable, updateTable, deleteTable, activeOrders, fetchTodayActiveOrders, updateItemStatus, updateOrderStatus}}>
       {props.children}
     </RestaurantContext.Provider>
   );
